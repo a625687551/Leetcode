@@ -8,3 +8,4 @@ class Solution:
         :type prices: List[int]
         :rtype: int
         """
+        return sum([b-a for a, b in zip(prices,prices[1:]) if b>a])
