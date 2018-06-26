@@ -169,7 +169,7 @@ class LinkedList:
         """
         self.head = None
         self.length = 0
-        print("clear the linkedlist finished")
+        print("clear the linked list finished")
 
     def print_linked_list(self):
         """
@@ -184,6 +184,51 @@ class LinkedList:
                 node = node._next
                 print("-->", node.data, end=" ")
             print("--> None, Linked list finish")
+
+
+def delete_random_node(node):
+    """在O(1)时间删除节点"""
+    pass
+
+
+def reverse_node(node):
+    """单链表的转置"""
+    pass
+
+
+def the_kth_node(node):
+    """求链表倒数第k个节点"""
+    pass
+
+
+def the_middle_node(node):
+    """求链表的中间节点"""
+    pass
+
+
+def has_circle(node):
+    """判断单链表是否存在环"""
+    pass
+
+
+def find_circle_port(node):
+    """找到有环链表入口点"""
+    pass
+
+
+def is_intersect(node):
+    """判断两个链表是否相交"""
+    pass
+
+
+def is_intersect_with_circle(node):
+    """链表有环，如何判断相交"""
+    pass
+
+
+def first_intersect(node):
+    """两链表相交的第一个公共节点"""
+    pass
 
 
 if __name__ == '__main__':
