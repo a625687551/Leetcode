@@ -11,15 +11,24 @@ class Solution:
     def reOrderArray(self, array):
         if not array:
             return []
-        start = 0
-        end = len(array) - 1
-        while start < end:
-            while start < end and self.judge(array[start]):
-                start += 1
-            while start < end and not self.judge(array[end]):
-                end -= 1
-            if start < end:
-                array[start], array[end] = array[end], array[start]
+        # start = 0
+        # end = len(array) - 1
+        # while start < end:
+        #     while start < end and self.judge(array[start]):
+        #         start += 1
+        #     while start < end and not self.judge(array[end]):
+        #         end -= 1
+        #     if start < end:
+        #         array[start], array[end] = array[end], array[start]
+        # return array
+        odd = []
+        even = []
+        for i in array:
+            if i & 1:
+                odd.append(i)
+            else:
+                even.append(i)
+        array = odd + even
         return array
 
     def judge(self, number):
