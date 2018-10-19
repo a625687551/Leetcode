@@ -16,7 +16,7 @@ class Solution:
             return res
         index = []
         for i in range(size):
-            while len(index) > 0 and num[i] >=num[index[-1]]:
+            while len(index) > 0 and num[i] >= num[index[-1]]:
                 index.pop()
             index.append(i)
         for i in range(size, len(num)):
