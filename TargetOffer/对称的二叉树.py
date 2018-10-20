@@ -11,4 +11,13 @@ class Solution:
     def isSymmetrical(self, pRoot):
         if not pRoot:
             return True
+        new = pRoot
+        return self.check(new, pRoot)
 
+    def check(self, left, right):
+        if not left and not right:
+            return True
+        if left and right and left.val == right.val:
+            return self.check(left.left, right.right) and self.check(left.right, right.left)
+        else:
+            return False
