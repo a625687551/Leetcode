@@ -39,7 +39,32 @@ def quick_sort(lists, left, right):
     return lists
 
 
+def quick_sort_brief(lists):
+    if len(lists) <= 1:
+        return lists
+    low = []
+    high = []
+    base = lists[0]
+    for x in lists[1:]:
+        if x <= base:
+            low.append(x)
+        else:
+            high.append(x)
+    return quick_sort_brief(low) + [base] + quick_sort_brief(high)
+
+
+def quick_sort_brief1(lists):
+    if len(lists) <= 1:
+        return lists
+    base = lists[0]
+    left = [x for x in lists[1:] if x <= base]
+    right = [x for x in lists[1:] if x > base]
+    return quick_sort_brief1(left) + [base] + quick_sort_brief1(right)
+
+
 if __name__ == '__main__':
     l = [29, 10, 14, 37, 14]
     f = quick_sort(l, left=0, right=len(l) - 1)
     print("finally {}".format(f))
+    print(quick_sort_brief(l))
+    print(quick_sort_brief1(l))
