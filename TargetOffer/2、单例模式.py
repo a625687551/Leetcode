@@ -13,13 +13,14 @@ class Singleton(object):
 
 
 # 装饰器来解决
-def singleton(cls):
-    _instances = {}
+def singleton(cls, *args, **kwargs):
+    instance = {}
 
-    def _singleton(*args, **kwargs):
-        if cls not in _instances:
-            _instances[cls] = cls(*args, **kwargs)
-        return _instances[cls]
+    def _singleton():
+        if cls not in instance:
+            instance[cls] = cls(*args, **kwargs)
+        return instance[cls]
+
     return _singleton()
 
 
@@ -29,6 +30,7 @@ class A(object):
 
     def __init__(self, x=0):
         self.x = x
+
 
 a1 = A(2)
 a2 = A(3)
