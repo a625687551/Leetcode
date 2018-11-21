@@ -10,7 +10,7 @@ class Solution:
     def Fibonacci(self, n):
         temp = [0, 1]
         if n >= 2:
-            for i in range(2, n+1):
+            for i in range(2, n + 1):
                 temp[i % 2] = temp[0] + temp[1]
         return temp[n % 2]
 
@@ -20,7 +20,10 @@ class Solution:
         if n == 2:
             return 1
         temp = [0, 1]
-        if n >=2
+        if n >= 2:
+            pass
+
+
 if __name__ == '__main__':
     s = Solution()
     print(s.Fibonacci(10))
