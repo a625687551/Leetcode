@@ -2,17 +2,18 @@
 
 
 class Solution():
-    def solution_over(self, s):
-        if not s and not isinstance(s, str):
-            return s
-        ws = 0
-        for item in s:
-            if item == " ":
-                ws += 1
-            else:
-                continue
-        new_len = len(s) + ws
-        new_str = []
+    def solution_over(self, base, expontent):
+        if not base:
+            return 0.0
+        if not expontent:
+            return 1
+        res = 1.0
+        expon = abs(expontent)
+        for x in range(expon):
+            res *= base
+        if expontent < 0:
+            return 1 / res
+        return res
 
 
 if __name__ == '__main__':
@@ -23,4 +24,4 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over(array, 10))
+    print(s.solution_over(2, -5))

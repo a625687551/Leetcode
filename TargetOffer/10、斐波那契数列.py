@@ -23,7 +23,6 @@ class Solution:
         if n >= 2:
             pass
 
-
 if __name__ == '__main__':
     s = Solution()
     print(s.Fibonacci(10))
