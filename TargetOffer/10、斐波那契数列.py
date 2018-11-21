@@ -20,7 +20,9 @@ class Solution:
         if n == 2:
             return 1
         temp = [0, 1]
-        if n >=2
+        if n >=2:
+            pass
+
 if __name__ == '__main__':
     s = Solution()
     print(s.Fibonacci(10))
