@@ -1,19 +1,37 @@
 # coding: utf-8
 
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
 
 class Solution():
-    def solution_over(self, base, expontent):
-        if not base:
-            return 0.0
-        if not expontent:
-            return 1
-        res = 1.0
-        expon = abs(expontent)
-        for x in range(expon):
-            res *= base
-        if expontent < 0:
-            return 1 / res
-        return res
+    def solution_over(self, head1,head2):
+        if not head1 and not head2:
+            return None
+        if not head1 and head2:
+            return head2
+        if not head2 and head1:
+            return head1
+        p1, p2 = head1, head2
+        p = ListNode
+        r = p
+        while p1 and p2:
+            if p1.val >= p2.val:
+                p.next = p2
+                p2 = p2.next
+            else:
+                p.next = p1
+                p1 = p1.next
+            p = p.next
+        if p1:
+            p.next = p1
+        elif p2:
+            p.next = p2
+        return r.next
+
+
 
 
 if __name__ == '__main__':

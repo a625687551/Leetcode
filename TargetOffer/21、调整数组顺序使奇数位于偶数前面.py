@@ -28,7 +28,7 @@ class Solution:
                 odd.append(i)
             else:
                 even.append(i)
-        array = odd + even
+        array = odd.extend(even)
         return array
 
     def judge(self, number):
