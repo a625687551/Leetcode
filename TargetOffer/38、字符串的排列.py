@@ -22,6 +22,6 @@ class Solution:
             for i in range(len(ss)):
                 self.perm(ss[:i] + ss[i + 1:], res, path + ss[i])
 
-
-s = Solution()
-print(s.Permutation("a"))
+if __name__ == '__main__':
+    s = Solution()
+    print(s.Permutation("abc"))
