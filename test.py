@@ -23,25 +23,33 @@ class TreeNode:
         self.right = None
 
 
-class Solution():
+class Solution:
     def __init__(self):
-        self.index = -1
+        # max heap
+        self.left = []
+        # min heap
+        self.right = []
 
-    def serialize(self, root):
-        s = ""
-        return self.serialize(root, s)
+    def get_median(self):
+        if len(self.left) == len(self.right):
+            return float(-self.left[0] + self.right[0])/2
+        elif len(self.right) > len(self.left):
+            return self.right[0]
+        else:
+            return -self.left[0]
 
-    def serialize_sub(self, root, s):
-        if not root:
-            return "$,"
-        s = str(root.val) + ","
-        left = self.serialize_sub(root.left, s)
-        right = self.serialize_sub(root.right, s)
-        s += left + right
-
-    def deserialize_sub(self, s):
-        pass
-
+    def insert_num(self, num):
+        if not self.left or num < -self.left[0]:
+            heapq.heappush(self.left, -num)
+        else:
+            heapq.heappush(self.right, num)
+        # balance
+        if len(self.left) > len(self.right) + 1:
+            temp = -heapq.heappop(self.left)
+            heapq.heappush(self.right, temp)
+        elif len(self.right) > len(self.left) + 1:
+            temp = -heapq.heappop(self.right)
+            heapq.heappush(self.left, temp)
 
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
@@ -51,4 +59,6 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over([5, 7, 6, 9, 11, 10, 8]))
+    for x in l:
+        s.insert_num(x)
+        print(s.get_median())

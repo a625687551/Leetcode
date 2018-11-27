@@ -14,7 +14,7 @@ class Solution:
         self.left = []
         self.right = []
 
-    def Insert(self, num):
+    def insert_num(self, num):
         if not self.left or num <= -self.left[0]:
             _heapq.heappush(self.left, -num)
         else:
@@ -26,7 +26,7 @@ class Solution:
             tmp = - _heapq.heappop(self.right)
             _heapq.heappush(self.left, tmp)
 
-    def GetMedian(self):
+    def get_median(self):
         if len(self.left) == len(self.right):
             return (float(-self.left[0]) + self.right[0])/2
         elif len(self.left) > len(self.right):
@@ -36,5 +36,9 @@ class Solution:
 
 
 if __name__ == '__main__':
+    l = [2, 3, 1, 0, 2, 5, 3]
     s = Solution()
-    print(s.GetMedian())
+    for x in l:
+        s.insert_num(x)
+        print(s.get_median())
+

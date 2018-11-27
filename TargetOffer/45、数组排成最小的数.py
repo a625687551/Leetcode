@@ -5,6 +5,7 @@
 """
 import operator
 
+
 class Solution:
     def PrintMinNumber(self, numbers):
         # # 这里的方法适合于python2.7,对于python3需要修改
@@ -17,7 +18,7 @@ class Solution:
         if not numbers:
             return ""
         lam = lambda n1, n2: int(str(n1) + str(n2)) - int(str(n2) + str(n1))
-        array = sorted(numbers, key=lambda x, y: x+6)
+        array = sorted(numbers, key=lambda x, y: x + 6)
         return "".join(array)
 
 
