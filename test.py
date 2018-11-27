@@ -30,26 +30,8 @@ class Solution:
         # min heap
         self.right = []
 
-    def get_median(self):
-        if len(self.left) == len(self.right):
-            return float(-self.left[0] + self.right[0])/2
-        elif len(self.right) > len(self.left):
-            return self.right[0]
-        else:
-            return -self.left[0]
-
-    def insert_num(self, num):
-        if not self.left or num < -self.left[0]:
-            heapq.heappush(self.left, -num)
-        else:
-            heapq.heappush(self.right, num)
-        # balance
-        if len(self.left) > len(self.right) + 1:
-            temp = -heapq.heappop(self.left)
-            heapq.heappush(self.right, temp)
-        elif len(self.right) > len(self.left) + 1:
-            temp = -heapq.heappop(self.right)
-            heapq.heappush(self.left, temp)
+    def solution_over(self, num):
+        pass
 
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
@@ -59,6 +41,4 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    for x in l:
-        s.insert_num(x)
-        print(s.get_median())
+    print(s.solution_over(10))
