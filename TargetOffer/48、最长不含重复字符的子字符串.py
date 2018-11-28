@@ -5,6 +5,27 @@
 动态规划问题
 """
 
+
 class Solution:
-    def max_worth_gift(self, numbers):
-        pass
+    def max_no_repetition(self, target):
+        positon = {}
+        cur_length = 0
+        max_length = 0
+        length = len(target)
+        for i in range(length):
+            pre_index = positon.get(target[i], -1)
+            if pre_index < 0 or i - pre_index > cur_length:
+                cur_length += 1
+            else:
+                if cur_length > max_length:
+                    max_length = cur_length
+                cur_length = i - pre_index
+            positon[target[i]] = i
+        if cur_length > max_length:
+            max_length = cur_length
+        return max_length
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.max_no_repetition("arabcacfr"))

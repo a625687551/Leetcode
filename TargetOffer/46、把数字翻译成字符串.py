@@ -15,25 +15,26 @@ class Solution:
 
     def get_trans_count(self, str_num):
         length = len(str_num)
-        counts = []
-        for i in range(0, length - 1, -1):
+        counts = [0]*length
+        for i in range(length - 1, -1, -1):
             if i < length - 1:
                 count = counts[i + 1]
             else:
                 count = 1
 
             if i < length - 1:
-                digit1 = str_num[i]
-                digit2 = str_num[i + 1]
+                digit1 = int(str_num[i])
+                digit2 = int(str_num[i + 1])
                 covered = digit1 * 10 + digit2
                 if 10 <= covered <= 25:
                     if i < length - 2:
                         count += counts[i + 2]
                     else:
                         count += 1
-            count[i] = count
-            print(counts)
-            return counts[0]
+            # print(count, i)
+            counts[i] = count
+        # print(counts)
+        return counts[0]
 
 
 if __name__ == '__main__':
