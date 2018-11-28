@@ -1,17 +1,40 @@
 # -*- coding:utf-8 -*-
 """
-求出1~13的整数中1出现的次数,并算出100~1300的整数中1出现的次数？
-为此他特别数了一下1~13中包含1的数字有1、10、11、12、13因此共出现6次,但是对于后面问题他就没辙了。
-ACMer希望你们帮帮他,并把问题更加普遍化,可以很快的求出任意非负整数区间中1出现的次数（从1 到 n 中1出现的次数）。
+数字序列“012345678910111213141516171819....”的格式序列化一个字符序列中。在这个序列中...
 """
 
 
 class Solution:
-    def num_in_nums(self, nums, n):
-        pass
+    def num_in_nums(self, n):
+        if n < 0:
+            return -1
+        digits = 1
+        while True:
+            middle = self.count_int(digits)
+            if n < middle * digits:
+                return self.digit_at_index(n, digits)
+            n -= digits * middle
+            digits += 1
+        return -1
 
+    def count_int(self, num):
+        if num == 1:
+            return 10
+        return 9 * pow(10, num-1)
+
+    def digit_at_index(self, index, digits):
+        num = self.begin_number(digits) + index // digits
+        for x in range(1, digits - index % digits):
+            num /= 10
+        return num % 10
+
+    def begin_number(self, digits):
+        """m位数字的开始数字"""
+        if digits == 1:
+            return 0
+        return pow(10, digits - 1)
 
 if __name__ == '__main__':
     a = "5526371163256555"
     s = Solution()
-    print(s.num_in_nums(a, 10))
+    print(s.num_in_nums(1001))

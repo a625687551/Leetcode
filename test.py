@@ -30,8 +30,11 @@ class Solution:
         # min heap
         self.right = []
 
-    def solution_over(self, num):
-        pass
+    def solution_over(self, nums):
+        if not nums:
+            return ""
+
+
 
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
@@ -41,4 +44,4 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over(10))
+    print(s.solution_over(12))
