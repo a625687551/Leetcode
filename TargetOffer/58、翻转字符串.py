@@ -21,7 +21,7 @@ class Solution:
         if n >= length:
             n = n % length
         s = s[::-1]
-        print(s)
+        # print(s)
         first = ""
         second = ""
         for i in range(length - n):
@@ -32,7 +32,20 @@ class Solution:
         second = second[::-1]
         return first + second
 
+    def left_rotate_string(self, s, n):
+        if not s:
+            return ""
+        length = len(s)
+        if n > length:
+            return ""
+        if n == length:
+            return s
+        pre_half = s[:n][::-1]
+        last_half = s[n:][::-1]
+        return (pre_half+last_half)[::-1]
+
 if __name__ == '__main__':
     s = Solution()
-    # print(s.LeftRotateString("abcdefg", 7))
-    print(s.rotate_string("student. a am I"))
+    print(s.LeftRotateString("abcdefg", 6))
+    print(s.left_rotate_string("abcdefg", 6))
+    # print(s.rotate_string("student. a am I"))

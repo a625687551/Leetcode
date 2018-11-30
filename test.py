@@ -29,11 +29,21 @@ class Solution:
         self.left = []
         # min heap
         self.right = []
+        self.stack = []
 
-    def solution_over(self, nums):
-        if not nums:
-            return ""
+    def solution_over(self, root, k):
+        self.tranverse(root)
+        if 1 <= k <= len(self.stack):
+            return self.stack[k - 1]
+        else:
+            return None
 
+    def tranverse(self, root):
+        if not root:
+            return root
+        self.tranverse(root.left)
+        self.stack.append(root)
+        self.tranverse(root.right)
 
 
 if __name__ == '__main__':

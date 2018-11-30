@@ -19,4 +19,4 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.Power(2, 5))
+    print(s.FindFirstCommonNode(2, 5))
