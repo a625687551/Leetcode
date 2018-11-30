@@ -31,19 +31,13 @@ class Solution:
         self.right = []
         self.stack = []
 
-    def solution_over(self, root, k):
-        self.tranverse(root)
-        if 1 <= k <= len(self.stack):
-            return self.stack[k - 1]
-        else:
-            return None
-
-    def tranverse(self, root):
+    def solution_over(self, root):
         if not root:
-            return root
-        self.tranverse(root.left)
-        self.stack.append(root)
-        self.tranverse(root.right)
+            return 0
+        left_n = self.solution_over(root.left)
+        right_n = self.solution_over(root.right)
+
+        return left_n + 1 if left_n >= right_n else right_n + 1
 
 
 if __name__ == '__main__':
@@ -54,4 +48,4 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over(12))
+    print(s.solution_over([2, 3, 4, 2, 6, 2, 5, 1], 3))
