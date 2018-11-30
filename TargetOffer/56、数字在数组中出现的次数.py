@@ -11,15 +11,26 @@
 
 class Solution:
     def get_appear_once_two(self, data):
-        pass
+        if not data:
+            return 0
+        inter = 0
+        for x in data:
+            inter = inter ^ x
+        print(inter)
 
     def get_appear_once_one(self, data):
         if not data:
             return 0
-
-
+        res = [0] * 8
+        for x in data:
+            for k, v in enumerate([int(i) for i in "{:08b}".format(x)]):
+                res[k] = res[k] + v
+        print(res)
+        out = "".join([str(x) for x in map(lambda x: x % 3, res)])
+        return int(out, 2)
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.get_appear_once_one([1, 2, 3, 4, 5, 6, 6, 7, 7]))
+    # print(s.get_appear_once_one([1, 1, 1, 2, 2, 2, 6]))
+    print(s.get_appear_once_two([1, 1, 2, 2, 3, 6]))

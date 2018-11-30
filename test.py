@@ -32,12 +32,40 @@ class Solution:
         self.stack = []
 
     def solution_over(self, root):
-        if not root:
-            return 0
-        left_n = self.solution_over(root.left)
-        right_n = self.solution_over(root.right)
+        return self.inverse_count(root[:], 0, len(root) - 1, root[:])
 
-        return left_n + 1 if left_n >= right_n else right_n + 1
+    def inverse_count(self, temp, start, end, data):
+        if end - start < 1:
+            return 0
+        if end - start == 1:
+            if data[start] <= data[end]:
+                return 0
+            else:
+                temp[start], temp[end] = data[end], data[start]
+
+        mid = (start + end) // 2
+        cnt = self.inverse_count(data, start, mid, temp) + self.inverse_count(data, mid + 1, end, temp)
+        i = start
+        j = mid + 1
+        ind = start
+        while i <= mid and j <= end:
+            if data[i] <= data[j]:
+                temp[ind] = data[i]
+                i += 1
+            else:
+                temp[ind] = data[j]
+                cnt += mid - i + 1
+                j += 1
+            ind += 1
+        while i <= mid:
+            temp[ind] = data[i]
+            i += 1
+            ind += 1
+        while j <= end:
+            temp[ind] = data[j]
+            j += 1
+            ind += 1
+        return cnt
 
 
 if __name__ == '__main__':
@@ -48,4 +76,4 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over([2, 3, 4, 2, 6, 2, 5, 1], 3))
+    print(s.solution_over([7, 5, 6, 4]))
