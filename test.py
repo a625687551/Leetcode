@@ -31,43 +31,25 @@ class Solution:
         self.right = []
         self.stack = []
 
-    def solution_over(self, root):
-        return self.inverse_count(root[:], 0, len(root) - 1, root[:])
-
-    def inverse_count(self, temp, start, end, data):
-        if end - start < 1:
-            return 0
-        if end - start == 1:
-            if data[start] <= data[end]:
-                return 0
+    def solution_over(self, nums):
+        if not nums or len(nums) != 5:
+            return False
+        new_list = sorted(nums)
+        zero_num = 0
+        num_gap = 0
+        print(new_list)
+        for i, x in enumerate(new_list[:4]):
+            if x == 0:
+                zero_num += 1
             else:
-                temp[start], temp[end] = data[end], data[start]
-
-        mid = (start + end) // 2
-        cnt = self.inverse_count(data, start, mid, temp) + self.inverse_count(data, mid + 1, end, temp)
-        i = start
-        j = mid + 1
-        ind = start
-        while i <= mid and j <= end:
-            if data[i] <= data[j]:
-                temp[ind] = data[i]
-                i += 1
-            else:
-                temp[ind] = data[j]
-                cnt += mid - i + 1
-                j += 1
-            ind += 1
-        while i <= mid:
-            temp[ind] = data[i]
-            i += 1
-            ind += 1
-        while j <= end:
-            temp[ind] = data[j]
-            j += 1
-            ind += 1
-        return cnt
-
-
+                if new_list[i+1] == new_list[i]:
+                    return False
+                num_gap += new_list[i+1] - new_list[i]
+        print(zero_num, num_gap)
+        if num_gap <= 4:
+            return True
+        else:
+            return False
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
 
@@ -76,4 +58,6 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    print(s.solution_over([7, 5, 6, 4]))
+    s = Solution()
+    print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
+    # print(s.solution_over([7, 5, 6, 4]))
