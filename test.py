@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import heapq
+from functools import reduce
 
 
 class ListNode:
@@ -27,31 +28,50 @@ class Solution:
     def __init__(self):
         # max heap
         self.left = []
-        # min heap
         self.right = []
         self.stack = []
+        self.vis = {}
 
-    def solution_over(self, nums):
-        if not nums or len(nums) != 5:
-            return False
-        new_list = sorted(nums)
-        zero_num = 0
-        num_gap = 0
-        print(new_list)
-        for i, x in enumerate(new_list[:4]):
-            if x == 0:
-                zero_num += 1
+    def solution_over(self, data):
+        return self.inverse_count(data[:], 0, len(data) - 1, data[:]) % 1000000
+
+    def inverse_count(self, tmp, start, end, data):
+        if end - start < 1:
+            return 0
+        if end - start == 1:
+            if data[start] <= data[end]:
+                return 0
             else:
-                if new_list[i+1] == new_list[i]:
-                    return False
-                num_gap += new_list[i+1] - new_list[i]
-        print(zero_num, num_gap)
-        if num_gap <= 4:
-            return True
-        else:
-            return False
+                tmp[start], tmp[end] = data[end], data[start]
+                return 1
+        mid = (start + end) // 2
+        cnt = self.inverse_count(data, start, mid, tmp) + self.inverse_count(data, mid + 1, end, tmp)
+        i = start
+        j = mid + 1
+        ind = start
+        while (i <= mid and j <= end):
+            if data[i] <= data[j]:
+                tmp[ind] = data[i]
+                i += 1
+            else:
+                tmp[ind] = data[j]
+                cnt += mid - i + 1
+                j += 1
+            ind += 1
+        while i <= mid:
+            tmp[ind] = data[i]
+            i += 1
+            ind += 1
+        while j <= end:
+            tmp[ind] = data[j]
+            j += 1
+            ind += 1
+        return cnt
+
+
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
+    l2 = [1, 1, 1, 1, 1, 1, 1]
 
     array = [[1, 2, 8, 9],
              [2, 4, 9, 12],
@@ -59,5 +79,6 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     s = Solution()
-    print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
+    # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
+    print(s.solution_over(l))
     # print(s.solution_over([7, 5, 6, 4]))
