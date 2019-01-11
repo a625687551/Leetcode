@@ -25,12 +25,14 @@ class Solution:
         raw_num = len(array)
         col_num = len(array[0])
 
-        if isinstance(target, int) and isinstance(array[0][0], int):
-            target = int(target)
-        elif isinstance(target, int) and isinstance(array[0][0], float):
-            target = float(target)
-        elif type(target) != type(array[0][0]):
-            return False
+        # if isinstance(target, int) and isinstance(array[0][0], int):
+        #     target = int(target)
+        # elif isinstance(target, int) and isinstance(array[0][0], float):
+        #     target = float(target)
+        # elif type(target) != type(array[0][0]):
+        #     return False
+        if isinstance(target, (int, float)):
+            target = type(array[0][0])(target)
 
         i = col_num - 1
         j = 0

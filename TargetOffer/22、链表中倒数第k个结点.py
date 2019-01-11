@@ -6,9 +6,12 @@
 
 
 class ListNode:
-    def __init__(self, x):
-        self.val = x
-        self.next = None
+    def __init__(self, item=None, pos_item=None):
+        self.val = item
+        self.next = pos_item
+
+    def __repr__(self):
+        return str(self.val)
 
 
 class Solution:
@@ -29,5 +32,7 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    t = ListNode({1, 2, 3, 4, 5})
-    print(s.FindKthToTail(t.next, 1))
+    t = ListNode({1, 2, 3, 4, 5}, pos_item=0)
+    print(t)
+    print(t.next.next)
+    # print(s.FindKthToTail(t.next, 1))
