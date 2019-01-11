@@ -32,5 +32,5 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    # print(s.get_appear_once_one([1, 1, 1, 2, 2, 2, 6]))
-    print(s.get_appear_once_two([1, 1, 2, 2, 3, 6]))
+    print(s.get_appear_once_one([1, 1, 1, 2, 2, 2, 6]))
+    # print(s.get_appear_once_two([1, 1, 2, 2, 3, 6]))
