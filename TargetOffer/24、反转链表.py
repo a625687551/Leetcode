@@ -27,4 +27,4 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.FindKthToTail({1, 2, 3, 4, 5}, 1))
+    print(s.ReverseList({1, 2, 3, 4, 5}))

@@ -27,8 +27,11 @@ class Solution:
             _heapq.heappush(self.left, tmp)
 
     def get_median(self):
+        if not self.right and not self.left:
+            return None
+
         if len(self.left) == len(self.right):
-            return (float(-self.left[0]) + self.right[0])/2
+            return (float(-self.left[0]) + self.right[0]) / 2
         elif len(self.left) > len(self.right):
             return -self.left[0]
         else:
@@ -41,4 +44,3 @@ if __name__ == '__main__':
     for x in l:
         s.insert_num(x)
         print(s.get_median())
-

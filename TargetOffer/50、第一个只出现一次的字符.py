@@ -10,10 +10,7 @@ class Solution:
             return -1
         str_dict = {}
         for x in s:
-            if x in str_dict.keys():
-                str_dict[x] += 1
-            else:
-                str_dict[x] = 1
+            str_dict[x] = str_dict.get(x, 0) + 1
         for i, key in enumerate(s):
             if str_dict[key] == 1:
                 return i
