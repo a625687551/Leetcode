@@ -34,26 +34,39 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution_over(self, data):
-        if not data:
-            return 0
-        res = []
-        for i, v in enumerate(array):
-            if i == 0 or res[-1] <= 0:
-                res.append(v)
-            else:
-                res.append(res[-1] + v)
-        return max(res)
+    def solution_over(self, n):
+        if n <= 0 or not isinstance(n, int):
+            return -1
+        list_num = ["0"] * n
+        while self.increament(list_num) is False:
+            self.print_num(list_num)
 
-    def get_midian(self):
-        if not self.right and not self.left:
-            return None
-        if len(self.right) == len(self.left):
-            return (float(self.right[0]) - self.left[0]) // 2
-        elif len(self.right) > len(self.left):
-            return self.right[0]
-        else:
-            return - self.left[0]
+    def print_num(self, num):
+        for i, v in enumerate(num):
+            if v != "0":
+                print("".join(num[i:]))
+                break
+
+    def increament(self, num):
+        is_overflow = False
+        is_incre = 0
+        len_num = len(num)
+        n = len_num - 1
+        while n >= 0:
+            nsum = int(num[n]) + is_incre
+            if n == len_num - 1:
+                nsum += 1
+            if nsum >= 10:
+                if n == 0:
+                    is_overflow = True
+                else:
+                    is_incre = 1
+                    nsum = nsum % 10
+                    num[n] = str(nsum)
+            else:
+                num[n] = str(nsum)
+            n -= 1
+        return is_overflow
 
 
 if __name__ == '__main__':
@@ -66,7 +79,7 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    # print(s.solution_over(array))
+    # print(s.solution_over(3))
     # print(s.solution_over([7, 5, 6, 4]))
-    t = [17, 20, 23, 62]
+    t = [4, 34, 41, 32, 37]
     # print([random.randint(1, 65) for _ in range(5)])

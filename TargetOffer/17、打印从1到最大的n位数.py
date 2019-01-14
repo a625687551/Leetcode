@@ -15,13 +15,9 @@ class Solution:
             self.print_num(list_num)
 
     def print_num(self, num):
-        is_begin = False
-        for i in range(len(num)):
-            if num[i] != "0" and is_begin is False:
-                is_begin = True
-            if is_begin:
-                tmp = ("".join(num[i:]))
-                print(tmp)
+        for i, v in enumerate(num):
+            if v != "0":
+                print("".join(num[i:]))
                 break
 
     def increament(self, num):
@@ -44,6 +40,7 @@ class Solution:
                 num[n] = str(nsum)
             n -= 1
         return is_overflow
+
 
 class Solution1:
     def Increment(self, number):
