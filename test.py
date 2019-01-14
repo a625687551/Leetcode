@@ -34,20 +34,26 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution_over(self, head, k):
-        if not head or k < 0:
-            return False
-        first = second = head
-        count = 0
+    def solution_over(self, data):
+        if not data:
+            return 0
+        res = []
+        for i, v in enumerate(array):
+            if i == 0 or res[-1] <= 0:
+                res.append(v)
+            else:
+                res.append(res[-1] + v)
+        return max(res)
 
-        while first and first.next:
-            first = first.next
-            count += 1
-            if count >= k:
-                second = second.next
-        if count < k:
-            return False
-        return second
+    def get_midian(self):
+        if not self.right and not self.left:
+            return None
+        if len(self.right) == len(self.left):
+            return (float(self.right[0]) - self.left[0]) // 2
+        elif len(self.right) > len(self.left):
+            return self.right[0]
+        else:
+            return - self.left[0]
 
 
 if __name__ == '__main__':
@@ -59,9 +65,8 @@ if __name__ == '__main__':
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
     s = Solution()
-    s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution_over(l))
+    # print(s.solution_over(array))
     # print(s.solution_over([7, 5, 6, 4]))
-    t = [56, 49, 29]
-    print([random.randint(1, 65) for _ in range(5)])
+    t = [17, 20, 23, 62]
+    # print([random.randint(1, 65) for _ in range(5)])
