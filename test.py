@@ -29,45 +29,36 @@ class TreeNode:
 class Solution:
     def __init__(self):
         # max heap
+        self.index = -1
         self.left = []
         self.right = []
         self.stack = []
         self.vis = {}
 
-    def solution_over(self, n):
-        if n <= 0 or not isinstance(n, int):
-            return -1
-        list_num = ["0"] * n
-        while self.increament(list_num) is False:
-            self.print_num(list_num)
+    def solution(self, root):
+        s = ""
+        return self.serialize_sub(root, s)
 
-    def print_num(self, num):
-        for i, v in enumerate(num):
-            if v != "0":
-                print("".join(num[i:]))
-                break
+    def serialize_sub(self, root, s):
+        if not root:
+            return "$,"
+        s = str(root.val) + ","
+        left = self.serialize_sub(root.left, s)
+        right = self.serialize_sub(root.right, s)
+        s += left + right
+        return s
 
-    def increament(self, num):
-        is_overflow = False
-        is_incre = 0
-        len_num = len(num)
-        n = len_num - 1
-        while n >= 0:
-            nsum = int(num[n]) + is_incre
-            if n == len_num - 1:
-                nsum += 1
-            if nsum >= 10:
-                if n == 0:
-                    is_overflow = True
-                else:
-                    is_incre = 1
-                    nsum = nsum % 10
-                    num[n] = str(nsum)
-            else:
-                num[n] = str(nsum)
-            n -= 1
-        return is_overflow
-
+    def deserialize(self, s):
+        self.index += 1
+        l = s.split(",")
+        if self.index >= len(s):
+            return None
+        root = None
+        if l[self.index] != "$":
+            root = TreeNode[int(l[self.index])]
+            root.left = self.deserialize(s)
+            root.right = self.deserialize(s)
+        return root
 
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
@@ -79,7 +70,6 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    # print(s.solution_over(3))
-    # print(s.solution_over([7, 5, 6, 4]))
-    t = [4, 34, 41, 32, 37]
+    # print(s.solution(7, array))
+    t = [20, 31, 50, 15, 58]
     # print([random.randint(1, 65) for _ in range(5)])

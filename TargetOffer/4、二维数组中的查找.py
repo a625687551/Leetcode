@@ -45,15 +45,17 @@ class Solution:
                 return True
         return False
 
-array = [[1, 2, 8, 9],
-         [2, 4, 9, 12],
-         [4, 7, 10, 13],
-         [6, 8, 11, 15]]
-array2 = []
-array3 = [['a', 'b', 'c'],
-          ['b', 'c', 'd']]
-array4 = [[1, 2, 8, 9],
-          [4, 7, 10, 13]]
-array5 = [[]]
-findtarget = Solution()
-print(findtarget.Find(7, array5))
+
+if __name__ == '__main__':
+    array = [[1, 2, 8, 9],
+             [2, 4, 9, 12],
+             [4, 7, 10, 13],
+             [6, 8, 11, 15]]
+    array2 = []
+    array3 = [['a', 'b', 'c'],
+              ['b', 'c', 'd']]
+    array4 = [[1, 2, 8, 9],
+              [4, 7, 10, 13]]
+    array5 = [[]]
+    findtarget = Solution()
+    print(findtarget.Find(7, array))
