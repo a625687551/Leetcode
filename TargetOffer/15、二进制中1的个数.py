@@ -6,9 +6,15 @@
 
 class Solution:
     def NumberOf1(self, n):
+        if not isinstance(n, int):
+            return None
+        n = abs(n)
         return sum([n >> i & 1 for i in range(64)])
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.NumberOf1(12))
+    print(s.NumberOf1(0))
+    print(s.NumberOf1("145345"))
+    print(s.NumberOf1(-1))

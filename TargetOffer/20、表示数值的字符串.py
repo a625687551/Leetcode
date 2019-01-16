@@ -44,3 +44,5 @@ if __name__ == '__main__':
     print(s.isNumeric("-1E-16"))
     print(s.isNumeric("1.79769313486232E+308"))
     print(s.isNumeric("123.45e+6"))
+    print(s.isNumeric("123.45*"))
+    print(s.isNumeric("123.45"))

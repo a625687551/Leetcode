@@ -35,30 +35,31 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, root):
-        s = ""
-        return self.serialize_sub(root, s)
+    def solution(self, s):
+        if not s:
+            return -1
+        sign, decimal, has_e = False, False, False
+        for i, x in enumerate(s):
+            if x == "e" or x == "E":
+                if i == len(s) - 1:
+                    return False
+                if has_e:
+                    return False
+                has_e = True
+            elif x in ["-", "+"]:
+                if sign and s[i - 1] not in ["e", "E"]:
+                    return False
+                if not sign and i > 0 and s[i - 1] not in ["e", "E"]:
+                    return False
+                sign = True
+            elif x == ".":
+                if has_e or decimal:
+                    return False
+                decimal = True
+            elif x > "9" or x < "0":
+                return False
+        return True
 
-    def serialize_sub(self, root, s):
-        if not root:
-            return "$,"
-        s = str(root.val) + ","
-        left = self.serialize_sub(root.left, s)
-        right = self.serialize_sub(root.right, s)
-        s += left + right
-        return s
-
-    def deserialize(self, s):
-        self.index += 1
-        l = s.split(",")
-        if self.index >= len(s):
-            return None
-        root = None
-        if l[self.index] != "$":
-            root = TreeNode[int(l[self.index])]
-            root.left = self.deserialize(s)
-            root.right = self.deserialize(s)
-        return root
 
 if __name__ == '__main__':
     l = [2, 3, 1, 0, 2, 5, 3]
