@@ -1,6 +1,7 @@
 # coding: utf-8
 
 import heapq
+import numpy as np
 import random
 
 from functools import reduce
@@ -35,30 +36,14 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, s):
-        if not s:
-            return -1
-        sign, decimal, has_e = False, False, False
-        for i, x in enumerate(s):
-            if x == "e" or x == "E":
-                if i == len(s) - 1:
-                    return False
-                if has_e:
-                    return False
-                has_e = True
-            elif x in ["-", "+"]:
-                if sign and s[i - 1] not in ["e", "E"]:
-                    return False
-                if not sign and i > 0 and s[i - 1] not in ["e", "E"]:
-                    return False
-                sign = True
-            elif x == ".":
-                if has_e or decimal:
-                    return False
-                decimal = True
-            elif x > "9" or x < "0":
-                return False
-        return True
+    def solution(self, num1, num2):
+        while num2 != 0:
+            sum_two = num1 ^ num2
+            carray = (num1 & num2) << 1
+            num1 = sum_two
+            num2 = carray
+        return num1
+
 
 
 if __name__ == '__main__':
@@ -72,5 +57,5 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(7, array))
-    t = [20, 31, 50, 15, 58]
+    t = [65, 47, 54]
     # print([random.randint(1, 65) for _ in range(5)])
