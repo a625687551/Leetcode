@@ -36,14 +36,17 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, num1, num2):
-        while num2 != 0:
-            sum_two = num1 ^ num2
-            carray = (num1 & num2) << 1
-            num1 = sum_two
-            num2 = carray
-        return num1
-
+    def solution(self, root, target):
+        if not root or not target:
+            return []
+        if not root.left and not root.right and root.val == target:
+            return [[root.val]]
+        res = []
+        left = self.solution(root.left, target - root.val)
+        right = self.solution(root.right, target - root.val)
+        for i in left + right:
+            res.append([root.val] + i)
+        return res
 
 
 if __name__ == '__main__':
@@ -57,5 +60,5 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(7, array))
-    t = [65, 47, 54]
-    # print([random.randint(1, 65) for _ in range(5)])
+    t = [34, 50, 31]
+    print([random.randint(1, 65) for _ in range(5)])
