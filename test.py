@@ -36,17 +36,26 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, root, target):
-        if not root or not target:
-            return []
-        if not root.left and not root.right and root.val == target:
-            return [[root.val]]
-        res = []
-        left = self.solution(root.left, target - root.val)
-        right = self.solution(root.right, target - root.val)
-        for i in left + right:
-            res.append([root.val] + i)
-        return res
+    def solution(self, data):
+        if data < 1 or not isinstance(data, int):
+            return 0
+        count = 0
+        i = 0
+        while data // i:
+            current = (data//i)%10
+            high = data // (i*10)
+            low = data - (data//i)*i
+            if current == 0:
+                count += high*i
+            elif current == 1:
+                count += high*i + low + 1
+            else:
+                count += (high+1)*i
+            i = i*10
+        return count
+
+    def judge(self, num):
+        return num & 1
 
 
 if __name__ == '__main__':
@@ -59,6 +68,6 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    # print(s.solution(7, array))
-    t = [34, 50, 31]
-    print([random.randint(1, 65) for _ in range(5)])
+    print(s.solution(array))
+    t = [57, 56, 29]
+    # print([random.randint(1, 65) for _ in range(5)])

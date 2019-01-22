@@ -8,11 +8,13 @@
 
 class Solution:
     def printMatrix(self, matrix):
+        if not data:
+            return []
+        if not data[0]:
+            return []
         row = len(matrix)
         col = len(matrix[0])
         res = []
-        if not row and not col:
-            return res
         left, top, right, bottom = 0, 0, col - 1, row - 1
         while left <= right and top <= bottom:
             # left to right

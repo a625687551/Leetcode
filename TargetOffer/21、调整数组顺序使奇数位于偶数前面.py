@@ -11,16 +11,6 @@ class Solution:
     def reOrderArray(self, array):
         if not array:
             return []
-        # start = 0
-        # end = len(array) - 1
-        # while start < end:
-        #     while start < end and self.judge(array[start]):
-        #         start += 1
-        #     while start < end and not self.judge(array[end]):
-        #         end -= 1
-        #     if start < end:
-        #         array[start], array[end] = array[end], array[start]
-        # return array
         odd = []
         even = []
         for i in array:
@@ -31,11 +21,45 @@ class Solution:
         array = odd.extend(even)
         return array
 
+    def odd_before_even_resort(self, array):
+        if not array:
+            return []
+        start = 0
+        end = len(array) - 1
+        while start < end:
+            print(start, end)
+            while start < end and self.judge(array[start]):
+                start += 1
+            while start < end and not self.judge(array[end]):
+                end -= 1
+            if start < end:
+                array[start], array[end] = array[end], array[start]
+        return array
+
+    def odd_before_even_normal(self, array):
+        """bad one """
+        if not array:
+            return []
+        odd, even = len(array) - 1, len(array) - 1
+        while odd >= 0 and even >= 0:
+            print(array)
+            while even > 0 and not self.judge(array[even]):
+                even -= 1
+            if self.judge(array[even]):
+                array[even], array[even - 1] = array[even - 1], array[even]
+                odd = even
+        return array
+
     def judge(self, number):
         """用异或来判断，异或结果是0 则是偶数，奇数1"""
         return number & 1
 
 
 if __name__ == '__main__':
+    lst = [[], [1], [1, 3, 5, 7, 9, 8, 6, 4, 2], [2, 4, 6, 8, 9, 7, 5, 3, 1], [1, 2, 3, 5, 4, 6, 7, 3, 5, 6]]
     s = Solution()
-    print(s.reOrderArray([4, 5, 6, 7, 8]))
+    # print(s.reOrderArray([4, 5, 6, 7, 8]))
+    print(s.odd_before_even_resort([4, 5, 6, 7, 8]))
+    # print(s.odd_before_even_normal([4, 5, 6, 7, 8]))
+    # for x in lst:
+    #     print(s.odd_before_even(x))

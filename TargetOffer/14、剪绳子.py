@@ -45,4 +45,4 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     print(s.max_cut_1(8))
-    print(s.max_cut_2(8))
+    # print(s.max_cut_2(8))
