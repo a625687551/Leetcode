@@ -36,23 +36,33 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, data):
-        if data < 1 or not isinstance(data, int):
-            return 0
-        count = 0
-        i = 0
-        while data // i:
-            current = (data//i)%10
-            high = data // (i*10)
-            low = data - (data//i)*i
-            if current == 0:
-                count += high*i
-            elif current == 1:
-                count += high*i + low + 1
-            else:
-                count += (high+1)*i
-            i = i*10
-        return count
+    def solution(self, head):
+        if not head:
+            return head
+        cur = head
+        while cur:
+            new = RandomListNode(cur.lable)
+            new.next = cur.next
+            cur.next = new
+            cur = new.next
+        cur = head
+        while cur:
+            if cur.random:
+                cur.next.random = cur.random.next
+            cur = cur.next.next
+        clone = head.next
+        cur = clone
+        p_cur = head
+        while p_cur:
+            p_cur.next = p_cur.next.next
+            if cur.next:
+                cur.next = cur.next.next
+            cur = cur.next
+            p_cur = p_cur.next
+        return clone
+
+
+
 
     def judge(self, num):
         return num & 1
@@ -68,6 +78,6 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution(array))
-    t = [57, 56, 29]
-    # print([random.randint(1, 65) for _ in range(5)])
+    # print(s.solution(array))
+    t = [39, 42, 55, 35, 5]
+    print([random.randint(1, 65) for _ in range(5)])

@@ -22,7 +22,7 @@ class Solution(object):
         new_len = len(s) + ws * 2
         new_str = new_len * [None]
         index_old, index_new = len(s) - 1, new_len - 1
-        while index_old and index_new >= index_old:
+        while index_old >= 0 and index_new >= index_old:
             if s[index_old] == " ":
                 new_str[index_new - 2:index_new + 1] = ['%', '2', '0']
                 index_new -= 3
@@ -32,3 +32,10 @@ class Solution(object):
                 index_new -= 1
                 index_old -= 1
         return "".join(new_str)
+
+
+if __name__ == '__main__':
+    s = Solution()
+    test_str = ["wo ai ni", "", " wo ai ni", " wo ai ni "]
+    for i in test_str:
+        print(s.replace_str_back(i))

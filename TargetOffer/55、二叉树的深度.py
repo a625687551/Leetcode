@@ -14,4 +14,5 @@ class Solution:
         left_n = self.TreeDepth(pRoot.left)
         right_n = self.TreeDepth(pRoot.right)
 
-        return left_n + 1 if left_n >= right_n else right_n + 1
+        # return left_n + 1 if left_n >= right_n else right_n + 1
+        return max(left_n + 1, right_n + 1)
