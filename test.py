@@ -36,36 +36,17 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, head):
-        if not head:
-            return head
-        cur = head
-        while cur:
-            new = RandomListNode(cur.lable)
-            new.next = cur.next
-            cur.next = new
-            cur = new.next
-        cur = head
-        while cur:
-            if cur.random:
-                cur.next.random = cur.random.next
-            cur = cur.next.next
-        clone = head.next
-        cur = clone
-        p_cur = head
-        while p_cur:
-            p_cur.next = p_cur.next.next
-            if cur.next:
-                cur.next = cur.next.next
-            cur = cur.next
-            p_cur = p_cur.next
-        return clone
-
-
-
-
-    def judge(self, num):
-        return num & 1
+    def solution(self, num1, num2):
+        if not num1 or num2:
+            return num1 or num2
+        # num1 = "{:0=4b}".format(num1)
+        # num2 = "{:0=4b}".format(num2)
+        while num2 != 0:
+            sum_two = num1 ^ num2
+            carray = num1 & num2
+            num1 = sum_two
+            num2 = carray
+        return num1
 
 
 if __name__ == '__main__':
@@ -78,6 +59,6 @@ if __name__ == '__main__':
              [6, 8, 11, 15]]
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    # print(s.solution(array))
-    t = [39, 42, 55, 35, 5]
-    print([random.randint(1, 65) for _ in range(5)])
+    print(s.solution(15, 4))
+    # t = [38, 10, 40, 65, 41]
+    # print([random.randint(1, 65) for _ in range(5)])

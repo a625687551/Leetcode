@@ -15,6 +15,7 @@ class Solution:
         self.right = []
 
     def insert_num(self, num):
+        """这里面记住最小值在0位"""
         if not self.left or num <= -self.left[0]:
             _heapq.heappush(self.left, -num)
         else:
