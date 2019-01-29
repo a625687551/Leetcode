@@ -36,17 +36,18 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, num1, num2):
-        if not num1 or num2:
-            return num1 or num2
-        # num1 = "{:0=4b}".format(num1)
-        # num2 = "{:0=4b}".format(num2)
-        while num2 != 0:
-            sum_two = num1 ^ num2
-            carray = num1 & num2
-            num1 = sum_two
-            num2 = carray
-        return num1
+    def solution(self, data, n):
+        if not data:
+            return 0.0
+        if not n:
+            return 1.0
+        abs_n = abs(n)
+        res = 1.0
+        for i in range(abs_n):
+            res *= data
+        if n < 0:
+            res = 1.0 / res
+        return res
 
 
 if __name__ == '__main__':
@@ -57,8 +58,9 @@ if __name__ == '__main__':
              [2, 4, 9, 12],
              [4, 7, 10, 13],
              [6, 8, 11, 15]]
+
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution(15, 4))
-    # t = [38, 10, 40, 65, 41]
+    print(s.solution(2, 4))
+    # t = [31, 16, 46, 9, 8]
     # print([random.randint(1, 65) for _ in range(5)])
