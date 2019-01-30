@@ -21,9 +21,10 @@ class Solution:
                 t3 += 1
             if ugly_new % 5 == 0:
                 t5 += 1
+        print(ugly_list)
         return ugly_list[-1]
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.GetUglyNumber_Solution(10))
+    print(s.GetUglyNumber_Solution(11))
