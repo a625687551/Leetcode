@@ -36,21 +36,15 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, index):
-        if index <= 0:
-            return 0
-        ugly_list = [1]
-        time_2, time_3, time_5 = 0, 0, 0
-        for i in range(index-1):
-            ug_new = min(ugly_list[time_2] * 2, ugly_list[time_3] * 3, ugly_list[time_5] * 5)
-            ugly_list.append(ug_new)
-            if ug_new % 2 == 0:
-                time_2 += 1
-            if ug_new % 3 == 0:
-                time_3 += 1
-            if ug_new % 5 == 0:
-                time_5 += 1
-        return ugly_list[-1]
+    def solution(self, n, m):
+        if not m or not n or m < 1 or n < 1:
+            return -1
+        i = 0
+        nums = [x for x in range(n)]
+        while len(nums) > 1:
+            i = (m+i-1)%len(nums)
+            nums.pop(i)
+        return nums
 
 
 if __name__ == '__main__':
@@ -64,6 +58,6 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution(10))
+    print(s.solution(10,5))
     # t = [31, 16, 46, 9, 8]
     # print([random.randint(1, 65) for _ in range(5)])

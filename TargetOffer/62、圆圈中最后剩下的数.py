@@ -20,8 +20,10 @@ class Solution:
         else:
             i = 0
             nums = [x for x in range(n)]
+            print(nums)
             while len(nums) > 1:
                 i = (m + i - 1) % len(nums)
+                print(nums[i])
                 nums.pop(i)
             return nums[0]
 
@@ -30,12 +32,17 @@ class Solution:
             return -1
         else:
             last = 0
+            res_lst = [0]
             for i in range(1, n + 1):
                 last = (last + m) % i
+                res_lst.append(last)
+            print(res_lst)
             return last
 
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.LastRemaining_Solution(5, 3))
-    print(s.LastRemaining_Solution_1(5, 3))
+    # print(s.LastRemaining_Solution(5, 3))
+    print(s.LastRemaining_Solution_1(10, 5))
+    print(s.LastRemaining_Solution(10, 5))
+    # print(s.LastRemaining_Solution_1(5, 3))
