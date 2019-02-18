@@ -6,11 +6,16 @@
 """
 
 from functools import reduce
+
 """
 目前这个算法有问题，不对
 """
 
+
 class Solution:
+    def __init__(self):
+        self.vis = {}
+
     def movingCount(self, threshold, rows, cols):
         if threshold < 0 or rows < 0 or cols < 0:
             return 0

@@ -15,32 +15,43 @@ j d e h
 class Solution:
     """我在想这个用numpy是不是更好解决?"""
 
-    def hasPath(self, matrix, rows, cols, path):
-        if not matrix or not path or rows < 1 or cols < 1:
-            return False
+    def hasPath(self, matrix, path):
+        if not matrix or not path:
+            return -1
+        rows, cols = len(matrix), len(matrix[0])
         for row in range(rows):
             for col in range(cols):
-                if matrix[row * cols + col] == path[0]:
-                    if self.find_way(list(matrix), rows, cols, path[1:], row, col):
+                if matrix[row][col] == path[0]:
+                    if self.find_way(matrix, row, col, path[1:]):
                         return True
         return False
 
-    def find_way(self, matrix, rows, cols, path, row, col):
+    def find_way(self, matrix, row, col, path):
         if not path:
-            return True
-        matrix[row * cols + col] = '0'
-        if col + 1 < cols and matrix[row * cols + col + 1] == path[0]:
-            return self.find_way(matrix, rows, cols, path[1:], row, col + 1)
-        elif col - 1 >= 0 and matrix[row * cols + col - 1] == path[0]:
-            return self.find_way(matrix, rows, cols, path[1:], row, col - 1)
-        elif row + 1 < rows and matrix[(row + 1) * cols + col] == path[0]:
-            return self.find_way(matrix, rows, cols, path[1:], row + 1, col)
-        elif row - 1 >= 0 and matrix[(row - 1) * cols + col] == path[0]:
-            return self.find_way(matrix, rows, cols, path[1:], row - 1, col)
+                return True
+        rows, cols = len(matrix), len(matrix[0])
+        matrix[row][col] = 0
+        if col + 1 < cols and matrix[row][col + 1] == path[0]:
+            return self.find_way(matrix, row, col + 1, path[1:])
+        elif col - 1 >= 0 and matrix[row][col - 1] == path[0]:
+            return self.find_way(matrix, row, col - 1, path[1:])
+        elif row + 1 < rows and matrix[row + 1][col] == path[0]:
+            return self.find_way(matrix, row + 1, col, path[1:])
+        elif row - 1 >= 0 and matrix[row - 1][col] == path[0]:
+            return self.find_way(matrix, row - 1, col, path[1:])
         else:
             return False
 
+    def has_path(self):
+        pass
+
 
 if __name__ == '__main__':
+    matrix = [['A', 'B', 'C', 'E', 'H', 'J', 'I', 'G'],
+              ['S', 'F', 'C', 'S', 'L', 'O', 'P', 'Q'],
+              ['A', 'D', 'E', 'E', 'M', 'N', 'O', 'E'],
+              ['A', 'D', 'I', 'D', 'E', 'J', 'F', 'M'],
+              ['V', 'C', 'E', 'I', 'F', 'G', 'G', 'S']]
+    way = ['S', 'L', 'H', 'E', 'C', 'C', 'E', 'I', 'D', 'E', 'J', 'F', 'G', 'G', 'F', 'I', 'E']
     s = Solution()
-    print(s.hasPath("ABCEHJIGSFCSLOPQADEEMNOEADIDEJFMVCEIFGGS", 5, 8, "SLHECCEIDEJFGGFIE"))
+    print(s.hasPath(matrix, way))

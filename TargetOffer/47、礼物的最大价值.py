@@ -16,8 +16,7 @@ class Solution:
         max_value = np.ones((rows, cols))
         for i in range(rows):
             for j in range(cols):
-                left = 0
-                up = 0
+                left, up = 0, 0
                 if i > 0:
                     up = max_value[i - 1][j]
                 if j > 0:
@@ -37,4 +36,5 @@ if __name__ == '__main__':
             [5, 7, 4, 11],
             [3, 7, 16, 5]]
     s = Solution()
-    print(s.max_worth_gift(arr1))
+    # print(s.max_worth_gift(arr1))
+    print(s.max_worth_gift(array))

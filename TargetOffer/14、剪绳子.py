@@ -21,10 +21,14 @@ class Solution:
         for i in range(4, s_length + 1):
             max_num = 0
             for j in range(1, i):
+                # 思路：每次求解值时将其他小于需要求解的长度是都列出来放在一个数组里
+                # 如：求长度为5，最优解数组里必须得有长度为1,2,3,4的最优解值
+                # 注：此处使用列表保存最优解数组是为了性能优化，虽然递归求解也能解出，但会造成大量重复执行
                 temp = li[j] * li[i - j]
                 if temp > max_num:
                     max_num = temp
             li.append(max_num)
+        print(li)
         return li[-1]
 
     def max_cut_2(self, s_length):
@@ -44,5 +48,6 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
+    print(s.max_cut_1(8))
     print(s.max_cut_1(8))
     # print(s.max_cut_2(8))

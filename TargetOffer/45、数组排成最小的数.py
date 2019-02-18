@@ -20,7 +20,24 @@ class Solution:
         array = sorted(numbers, key=functools.cmp_to_key(lambda x, y: int(str(x) + str(y)) - int(str(y) + str(x))))
         return "".join(map(str, array))
 
+    def print_min_num(self, numbers):
+        """自定义的快速排序算法,这个本质上另类的快排"""
+        if not numbers:
+            return ""
+        nums = list(map(str, numbers))
+        return "".join(self.quick_sort(nums))
+
+    def quick_sort(self, number):
+        if len(number) < 2:
+            return number[:]
+        left = self.quick_sort([i for i in number[1:] if i + number[0] <= number[0] + i])
+        right = self.quick_sort([i for i in number[1:] if i + number[0] > number[0] + i])
+        return left + [number[0]] + right
+
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.PrintMinNumber([3, 32, 321]))
+    # print(s.PrintMinNumber([3, 32, 321]))
+    print(s.print_min_num([3, 32, 321]))
+    print(s.print_min_num([3, 5, 1, 4, 2]))
+    # print(s.PrintMinNumber([3, 5, 1, 4, 2]))

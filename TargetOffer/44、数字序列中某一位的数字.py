@@ -16,7 +16,6 @@ class Solution:
                 return self.digit_at_index(n, digits)
             n -= digits * middle
             digits += 1
-
         return -1
 
     def count_int(self, num):
