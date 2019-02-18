@@ -16,7 +16,7 @@ class Solution:
         inter = 0
         for x in data:
             inter = inter ^ x
-        print(inter)
+        return inter
 
     def get_appear_once_one(self, data):
         if not data:

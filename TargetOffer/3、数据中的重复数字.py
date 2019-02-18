@@ -29,3 +29,8 @@ class Solution:
                     index = numbers[i]
                     numbers[i], numbers[index] = numbers[index], numbers[i]
         return False
+
+
+if __name__ == '__main__':
+    s = Solution()
+    print(s.duplicate([2, 3, 1, 0, 2, 5, 3], {}))

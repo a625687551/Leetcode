@@ -11,10 +11,12 @@ PS: 这里遇到负数就尴尬了，但是其他语言就没事
 
 class Solution:
     def Add(self, num1, num2):
-        if not num1 or num1 & 0:
-            return num2
-        if not num2 or num2 & 0:
-            return num1
+        # if not num1 or num1 & 0:
+        #     return num2
+        # if not num2 or num2 & 0:
+        #     return num1
+        if not num1 or not num2:
+            return num1 or num2
 
         while num2 != 0:
             # 相加不需要进位的位

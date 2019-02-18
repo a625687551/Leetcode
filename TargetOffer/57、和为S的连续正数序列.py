@@ -8,9 +8,6 @@
 
 
 class Solution:
-    def dfds(self, x):
-        print(x)
-
     def FindContinuousSequence(self, tsum):
         res = []
         for i in range(1, tsum // 2 + 1):

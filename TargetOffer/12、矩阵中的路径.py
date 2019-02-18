@@ -8,6 +8,7 @@ a b t g
 c f c s 
 j d e h 
 回溯法来解决
+动态规划
 """
 
 

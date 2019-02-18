@@ -8,9 +8,9 @@
 
 class Solution:
     def printMatrix(self, matrix):
-        if not data:
+        if not matrix:
             return []
-        if not data[0]:
+        if not matrix[0]:
             return []
         row = len(matrix)
         col = len(matrix[0])

@@ -36,15 +36,14 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, n, m):
-        if not m or not n or m < 1 or n < 1:
-            return -1
-        i = 0
-        nums = [x for x in range(n)]
-        while len(nums) > 1:
-            i = (m+i-1)%len(nums)
-            nums.pop(i)
-        return nums
+    def solution(self, a, b):
+        if not a or not b:
+            return a or b
+        while b != 0:
+            sum_two = a ^ b
+            carray_on = (a & b) << 1
+            a, b = sum_two, carray_on
+        return a
 
 
 if __name__ == '__main__':
@@ -58,6 +57,6 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution(10,5))
-    # t = [31, 16, 46, 9, 8]
-    # print([random.randint(1, 65) for _ in range(5)])
+    print(s.solution(10, 2))
+    a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
+    print(len(a))

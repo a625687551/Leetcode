@@ -14,6 +14,7 @@ class Solution:
         for i, key in enumerate(s):
             if str_dict[key] == 1:
                 return i
+        return -1
 
 
 if __name__ == '__main__':

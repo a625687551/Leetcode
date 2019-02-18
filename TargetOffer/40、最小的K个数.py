@@ -4,6 +4,7 @@ import heapq
 
 class Solution:
     def GetLeastNumbers_Solution_min(self, tinput, k):
+        """输出最小的K个数字"""
         # 这个用最小堆
         if k <= 0 or not tinput or k > len(tinput):
             return []
@@ -11,7 +12,7 @@ class Solution:
         return [heapq.heappop(tinput) for _ in range(k)]
 
     def GetLeastNumbers_Solution_max(self, tinput, k):
-        # 模拟最大堆,但是输出顺序貌似不对，这里可能有问题
+        """使用最大堆来模拟，这个也是最合理的"""
         if k <= 0 or not tinput or k > len(tinput):
             return []
         max_heap = []
@@ -22,9 +23,10 @@ class Solution:
                 heapq.heappushpop(max_heap, -x)
             else:
                 continue
-        return [x for x in max_heap]
+        return [-heapq.heappop(max_heap) for _ in range(len(max_heap))]
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.GetLeastNumbers_Solution_max([4, 5, 1, 6, 2, 7, 3, 8], 4))
+    print(s.GetLeastNumbers_Solution_min([4, 5, 1, 6, 2, 7, 3, 8], 4))

@@ -16,7 +16,7 @@ class Solution:
         return " ".join(s.split(" ")[::-1])
 
     def LeftRotateString(self, s, n):
-        """左旋字符串"""
+        """左旋字符串,method 1"""
         if not s:
             return ""
         length = len(s)
@@ -35,6 +35,7 @@ class Solution:
         return first + second
 
     def left_rotate_string(self, s, n):
+        """method 2"""
         if not s:
             return ""
         length = len(s)
