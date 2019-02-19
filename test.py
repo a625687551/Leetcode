@@ -36,24 +36,13 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, num, size):
-        if not num:
-            return []
-        res = []
-        index = []
-        for i in range(size):
-            if len(index) > 0 and num[i] > num[index[-1]]:
-                index.pop()
-            index.append(i)
-        res.append(num[index[0]])
-        for i in range(size, len(num)):
-            while len(index) > 0 and num[i] > num[index[-1]]:
-                index.pop()
-            if len(index) > 0 and index[0] <= (i - size):
-                index.pop(0)
-            index.append(i)
-            res.append(num[index[0]])
-        return res
+    def solution(self, n, m):
+        if not n:
+            return None
+        last = 0
+        for i in range(1, n+1):
+            last = (last + m) % i
+        return last
 
 
 if __name__ == '__main__':
@@ -73,6 +62,6 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution([2, 3, 4, 2, 6, 2, 5, 1], 3))
+    print(s.solution(10, 5))
     b = [12, 13, 14, 17, 19, 38]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]

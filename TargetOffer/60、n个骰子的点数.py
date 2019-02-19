@@ -22,3 +22,4 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     print(s.max_dice_point(1))
+    print(s.max_dice_point(3))

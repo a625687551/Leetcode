@@ -22,16 +22,21 @@ class Solution:
                     matrix[i][j] = 0
                 elif s1[i - 1] == s2[j - 1]:
                     matrix[i][j] = matrix[i - 1][j - 1] + 1
-                    max_num = matrix[i][j]
-                    end = i
+                    if matrix[i][j] > max_num:
+                        max_num = matrix[i][j]
+                        end = i
                 else:
                     matrix[i][j] = max(matrix[i - 1][j], matrix[i][j - 1])
+        # print(matrix)
+        # print(max_num, end)
         return s1[end-max_num:end], matrix[len1][len2]
 
 
 if __name__ == '__main__':
     s = Solution()
     print(s.max_common("abcdef", "cdefab"))
+    print(s.max_common("cdefab", "abcdef"))
     print(s.max_common("xxxabcdef", "ttttcdefab"))
+    print(s.max_common("ggggabced555", "ttttabced4444"))
     print(s.max_common("", "sdffh"))
     print(s.max_common("", ""))
