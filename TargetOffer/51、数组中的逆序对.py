@@ -25,7 +25,7 @@ class Solution:
         i = start
         j = mid + 1
         ind = start
-        while (i <= mid and j <= end):
+        while i <= mid and j <= end:
             if data[i] <= data[j]:
                 tmp[ind] = data[i]
                 i += 1

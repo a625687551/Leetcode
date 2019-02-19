@@ -51,4 +51,5 @@ if __name__ == '__main__':
     s = Solution()
     print(s.LeftRotateString("abcdefg", 6))
     print(s.left_rotate_string("abcdefg", 6))
+    print(s.left_rotate_string("abcXYZdef", 3))
     # print(s.rotate_string("student. a am I"))

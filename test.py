@@ -36,21 +36,24 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, index):
-        if index <= 0 or not index:
-            return 0
-        ugly_list = [1]
-        t2, t3, t5 = 0, 0, 0
-        for i in range(index - 1):
-            ugly_new = min(ugly_list[t2] * 2, ugly_list[t3] * 3, ugly_list[t5] * 5)
-            ugly_list.append(ugly_new)
-            if ugly_new % 2 == 0:
-                t2 += 1
-            if ugly_new % 3 == 0:
-                t3 += 1
-            if ugly_new % 5 == 0:
-                t5 += 1
-        return ugly_list
+    def solution(self, num, size):
+        if not num:
+            return []
+        res = []
+        index = []
+        for i in range(size):
+            if len(index) > 0 and num[i] > num[index[-1]]:
+                index.pop()
+            index.append(i)
+        res.append(num[index[0]])
+        for i in range(size, len(num)):
+            while len(index) > 0 and num[i] > num[index[-1]]:
+                index.pop()
+            if len(index) > 0 and index[0] <= (i - size):
+                index.pop(0)
+            index.append(i)
+            res.append(num[index[0]])
+        return res
 
 
 if __name__ == '__main__':
@@ -70,6 +73,6 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution(10))
+    print(s.solution([2, 3, 4, 2, 6, 2, 5, 1], 3))
     b = [12, 13, 14, 17, 19, 38]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]

@@ -8,9 +8,6 @@
 
 
 class Solution:
-    def __init__(self):
-        self.stack = []
-
     def get_number_k_count(self, data, k):
         """直接调用库"""
         if not data:

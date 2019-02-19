@@ -14,6 +14,7 @@
 
 class Solution:
     def maxInWindows(self, num, size):
+        """滑动窗口的最大值"""
         res = []
         if not num or size <= 0 or len(num) < size:
             return res
@@ -33,6 +34,7 @@ class Solution:
         return res
 
     def max_in_queue(self, num):
+        """队列的最大值"""
         pass
 
 
