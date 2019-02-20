@@ -31,6 +31,7 @@ class Solution:
                 index.pop(0)
             index.append(i)
             res.append(num[index[0]])
+        print(index)
         return res
 
     def max_in_queue(self, num):

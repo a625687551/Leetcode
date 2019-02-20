@@ -44,5 +44,6 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.LastRemaining_Solution(5, 3))
     print(s.LastRemaining_Solution_1(10, 5))
+    print(s.LastRemaining_Solution_1(77, 2))
     # print(s.LastRemaining_Solution(10, 5))
     # print(s.LastRemaining_Solution_1(5, 3))

@@ -14,22 +14,21 @@ class Solution:
             return None
         len1, len2 = len(s1), len(s2)
         matrix = np.zeros([len1 + 1, len2 + 1], int)
-        end = 0
-        max_num = 0
+        end, max_len = 0, 0
         for i in range(1, len1 + 1):
             for j in range(1, len2 + 1):
                 if i == 0 or j == 0:
                     matrix[i][j] = 0
                 elif s1[i - 1] == s2[j - 1]:
                     matrix[i][j] = matrix[i - 1][j - 1] + 1
-                    if matrix[i][j] > max_num:
-                        max_num = matrix[i][j]
+                    if matrix[i][j] > max_len:
+                        max_len = matrix[i][j]
                         end = i
                 else:
                     matrix[i][j] = max(matrix[i - 1][j], matrix[i][j - 1])
         # print(matrix)
         # print(max_num, end)
-        return s1[end-max_num:end], matrix[len1][len2]
+        return s1[end-max_len:end], matrix[len1][len2]
 
 
 if __name__ == '__main__':
