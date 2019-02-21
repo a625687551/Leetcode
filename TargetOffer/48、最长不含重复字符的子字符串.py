@@ -21,9 +21,9 @@ class Solution:
                     max_length = cur_length
                 cur_length = i - pre_index
             positon[target[i]] = i
-        if cur_length > max_length:
-            max_length = cur_length
-        return max_length
+            if cur_length > max_length:
+                max_length = cur_length
+        return max_length, positon
 
 
 if __name__ == '__main__':

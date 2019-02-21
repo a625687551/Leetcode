@@ -14,14 +14,14 @@ class Solution:
         rows = len(numbers)
         cols = len(numbers[0])
         max_value = np.ones((rows, cols))
-        for i in range(rows):
-            for j in range(cols):
+        for row in range(rows):
+            for col in range(cols):
                 left, up = 0, 0
-                if i > 0:
-                    up = max_value[i - 1][j]
-                if j > 0:
-                    left = max_value[i][j - 1]
-                max_value[i][j] = max(up, left) + numbers[i][j]
+                if row > 0:
+                    up = max_value[row - 1][col]
+                if col > 0:
+                    left = max_value[row][col - 1]
+                max_value[row][col] = max(up, left) + numbers[row][col]
         print(max_value)
         return max_value[rows - 1][cols - 1]
 

@@ -36,24 +36,18 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, data, k):
+    def solution(self, data):
         if not data:
-            return None
-        left, right = 0, len(data)
-        first = self.get_first_k(data, k, left, right)
-        last = self.get_last_k(data, k, left, right)
-        return last - first + 1
-
-    def get_first_k(self, data, k, left, right):
-        while left <= right:
-            mid = (left + right) // 2
-            if data[mid] > k:
-                right = mid - 1
-            else:
-                lef
-
-    def get_last_k(self, data, k, left, right):
+            return 0
+        num = list(map(str, data))
         return
+
+    def quick_sort(self, data):
+        if len(data) < 2:
+            return data
+        left = self.quick_sort([i for i in data[1:] if i + data[0] <= data[0] + i])
+        right = self.quick_sort([i for i in data[1:] if i + data[0] > data[0] + i])
+        return left + [data[0]] + right
 
 
 if __name__ == '__main__':
@@ -73,6 +67,6 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    print(s.solution("abcdef", "cdefab"))
+    print(s.solution([1, 2, 3, 3, 3, 3, 4, 5], 3))
     b = [12, 13, 14, 17, 19, 38]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
