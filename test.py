@@ -37,17 +37,20 @@ class Solution:
         self.vis = {}
 
     def solution(self, data):
-        if not data:
-            return 0
-        num = list(map(str, data))
-        return
-
-    def quick_sort(self, data):
-        if len(data) < 2:
+        if not data or data <= 9:
             return data
-        left = self.quick_sort([i for i in data[1:] if i + data[0] <= data[0] + i])
-        right = self.quick_sort([i for i in data[1:] if i + data[0] > data[0] + i])
-        return left + [data[0]] + right
+        first = 0
+        data = data - 1
+        for i in range(len(str(data))):
+            temp = data - 9*10 ** i
+            if temp > 0:
+                data = temp
+            else:
+                first = 10 ** i
+                break
+        start_len = len(str(first))
+        k, s = data // start_len, data % start_len
+        return list(str(first + k))[s]
 
 
 if __name__ == '__main__':
@@ -67,7 +70,9 @@ if __name__ == '__main__':
 
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
-    # print(s.solution([1, 2, 3, 3, 3, 3, 4, 5], 3))
+    # print(s.solution(30))
+    print(s.solution(500))
+    # print(s.solution(10001))
     b = [38, 44, 46, 48, 51, 53, 59, 60, 62]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
-    print(sorted(random.choices(a, k=10)))
+    # print(sorted(random.choices(a, k=10)))

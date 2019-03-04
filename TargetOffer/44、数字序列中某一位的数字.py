@@ -21,7 +21,7 @@ class Solution:
     def count_int(self, num):
         if num == 1:
             return 10
-        return 9 * pow(10, num-1)
+        return 9 * pow(10, num - 1)
 
     def digit_at_index(self, index, digits):
         num = self.begin_number(digits) + index // digits
@@ -35,7 +35,26 @@ class Solution:
             return 0
         return pow(10, digits - 1)
 
+    def other_solution(self, n):
+        if not n or n <= 9:
+            return n
+        first = 0
+        data = n - 1
+        for i in range(len(str(data))):
+            temp = data - 9 * 10 ** i
+            if temp > 0:
+                data = temp
+            else:
+                first = 10 ** i
+                break
+        start_len = len(str(first))
+        k, s = data // start_len, data % start_len
+        return list(str(first + k))[s]
+
+
 if __name__ == '__main__':
     a = "5526371163256555"
     s = Solution()
-    print(s.num_in_nums(1001))
+    print(s.num_in_nums(30))
+    print(s.num_in_nums(500))
+    print(s.num_in_nums(10001))
