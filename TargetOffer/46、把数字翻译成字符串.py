@@ -14,9 +14,9 @@
    bccf+8        bczi    bwfi   mcfi
      /
  bccfi
-自下而上，动态规划，从最小的问题开始 ：
+自下而上，也可以叫从右往左，动态规划，从最小的问题开始 ：
 f(r)表示以r为开始（r最小取0）到最右端所组成的数字能够翻译成字符串的种数。对于长度为n的数字，f(n)=0,f(n-1)=1,求f(0)。
-递推公式为 f(r-2) = f(r-1)+g(r-2,r-1)*f(r)；
+递推公式(转移矩阵)为 f(r-2) = f(r-1)+g(r-2,r-1)*f(r)；
 其中，如果r-2，r-1能够翻译成字符，则g(r-2,r-1)=1，否则为0。
 因此，对于12258：
 f(5) = 0
@@ -66,13 +66,10 @@ class Solution:
         length = len(str_num)
         res = [0]*(length-1) + [1, 1]
         for i in range(length - 2, -1, -1):
-            if int("{}{}".format(str_num[i], str_num[i+1])) < 26:
+            if "{}{}".format(str_num[i], str_num[i+1]) < "26":
                 g = 1
             else:
                 g = 0
-            # temp = f2
-            # f2 = temp + g*f1
-            # f1 = temp
             res[i] = res[i+1] + res[i+2]*g
         return res[0]
 
