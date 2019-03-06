@@ -36,21 +36,31 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, data):
-        if not data or data <= 9:
-            return data
-        first = 0
-        data = data - 1
-        for i in range(len(str(data))):
-            temp = data - 9*10 ** i
-            if temp > 0:
-                data = temp
+    def solution(self, data, k):
+        if not data or not k:
+            return 0
+        left, right = 0, len(data) - 1
+        first_k = self.get_first(data, k, left, right)
+        last_k = self.get_last(data, k, left, right)
+        return last_k - first_k + 1
+
+    def get_first(self, data, k, left, right):
+        while left <= right:
+            mid = (left + right) // 2
+            if data[mid] >= k:
+                right = mid - 1
             else:
-                first = 10 ** i
-                break
-        start_len = len(str(first))
-        k, s = data // start_len, data % start_len
-        return list(str(first + k))[s]
+                left = mid + 1
+        return left
+
+    def get_last(self, data, k, left, right):
+        while left <= right:
+            mid = (left + right) // 2
+            if data[mid] > k:
+                right = mid - 1
+            else:
+                left = mid + 1
+        return right
 
 
 if __name__ == '__main__':
@@ -71,8 +81,8 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
-    print(s.solution(500))
+    print(s.solution([1, 2, 3, 3, 3, 3, 4, 5], 3))
     # print(s.solution(10001))
-    b = [38, 44, 46, 48, 51, 53, 59, 60, 62]
+    b = [51, 59, 60, 62]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
     # print(sorted(random.choices(a, k=10)))
