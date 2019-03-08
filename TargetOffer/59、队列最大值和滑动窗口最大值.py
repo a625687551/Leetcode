@@ -25,13 +25,12 @@ class Solution:
             index.append(i)
         res.append(num[index[0]])
         for i in range(size, len(num)):
-            while len(index) > 0 and num[i] >= num[index[-1]]:
+            while index and num[i] >= num[index[-1]]:
                 index.pop()
-            if len(index) > 0 and index[0] <= (i - size):
+            if index and index[0] <= (i - size):
                 index.pop(0)
             index.append(i)
             res.append(num[index[0]])
-        print(index)
         return res
 
     def max_in_queue(self, num):
@@ -41,4 +40,5 @@ class Solution:
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.maxInWindows([2, 3, 4, 2, 6, 2, 5, 1], 3))
+    # print(s.maxInWindows([2, 3, 4, 2, 6, 2, 5, 1], 3))
+    print(s.maxInWindows([6, 5, 4, 2, 6, 2, 5, 1], 3))

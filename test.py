@@ -36,31 +36,23 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, data, k):
-        if not data or not k:
-            return 0
-        left, right = 0, len(data) - 1
-        first_k = self.get_first(data, k, left, right)
-        last_k = self.get_last(data, k, left, right)
-        return last_k - first_k + 1
-
-    def get_first(self, data, k, left, right):
-        while left <= right:
-            mid = (left + right) // 2
-            if data[mid] >= k:
-                right = mid - 1
-            else:
-                left = mid + 1
-        return left
-
-    def get_last(self, data, k, left, right):
-        while left <= right:
-            mid = (left + right) // 2
-            if data[mid] > k:
-                right = mid - 1
-            else:
-                left = mid + 1
-        return right
+    def solution(self, num, size):
+        if not num or not size or size <= 0 or len(num) < size:
+            return []
+        res, index = [], []
+        for i in range(size):
+            if len(index) > 0 and num[i] > num[index[-1]]:
+                index.pop()
+            index.append(i)
+        res.append(num[index[0]])
+        for i in range(size, len(num)):
+            while index and num[i] > num[index[-1]]:
+                index.pop()
+            if index and index[0] <= (i - size):
+                index.pop(0)
+            index.append(i)
+            res.append(num[index[0]])
+        return res
 
 
 if __name__ == '__main__':
@@ -81,7 +73,7 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
-    print(s.solution([1, 2, 3, 3, 3, 3, 4, 5], 3))
+    print(s.solution([2, 3, 4, 2, 6, 2, 5, 1], 3))
     # print(s.solution(10001))
     b = [51, 59, 60, 62]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
