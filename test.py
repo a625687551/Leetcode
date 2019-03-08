@@ -36,23 +36,42 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, num, size):
-        if not num or not size or size <= 0 or len(num) < size:
-            return []
-        res, index = [], []
-        for i in range(size):
-            if len(index) > 0 and num[i] > num[index[-1]]:
-                index.pop()
-            index.append(i)
-        res.append(num[index[0]])
-        for i in range(size, len(num)):
-            while index and num[i] > num[index[-1]]:
-                index.pop()
-            if index and index[0] <= (i - size):
-                index.pop(0)
-            index.append(i)
-            res.append(num[index[0]])
-        return res
+    def solution(self, data):
+        if not data:
+            return 0
+        return self.inverse_data(data[:], data[:], 0, len(data) - 1) % 1000000007
+
+    def inverse_data(self, data, tmp, start, end):
+        if end - start < 1:
+            return 0
+        if end - start == 1:
+            if data[start] <= data[end]:
+                return 0
+            else:
+                tmp[start], tmp[end] = data[end], data[start]
+                return 1
+        mid = (start + end) // 2
+        count = self.inverse_data(data, tmp, start, mid) + self.inverse_data(data, tmp, mid + 1, end)
+        i, j = start, mid + 1
+        put_index = start
+        while i <= mid and j <= end:
+            if data[i] <= data[j]:
+                tmp[put_index] = data[i]
+                i += 1
+            else:
+                tmp[put_index] = data[j]
+                count += mid - i + 1
+                j += 1
+            put_index += 1
+        while i <= mid:
+            tmp[put_index] = data[i]
+            i += 1
+            put_index += 1
+        while j <= end:
+            tmp[put_index] = data[j]
+            j += 1
+            put_index += 1
+        return count
 
 
 if __name__ == '__main__':
@@ -73,7 +92,7 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
-    print(s.solution([2, 3, 4, 2, 6, 2, 5, 1], 3))
+    print(s.solution([7, 5, 6, 4]))
     # print(s.solution(10001))
     b = [51, 59, 60, 62]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]

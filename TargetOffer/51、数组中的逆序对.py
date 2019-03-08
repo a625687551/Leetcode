@@ -53,3 +53,4 @@ if __name__ == '__main__':
          187, 284, 665, 874, 80, 45, 848, 38, 811, 267, 575]
     s = Solution()
     print(s.InversePairs(l))
+    print(s.InversePairs([7, 5, 6, 4]))
