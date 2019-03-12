@@ -10,35 +10,38 @@ j d e h
 回溯法来解决
 动态规划
 """
+import numpy as np
 
 
 class Solution:
     """我在想这个用numpy是不是更好解决?"""
 
     def hasPath(self, matrix, path):
-        if not matrix or not path:
+        if not path or not matrix:
             return -1
-        rows, cols = len(matrix), len(matrix[0])
+        array = np.array(matrix)
+        rows, cols = array.shape
         for row in range(rows):
             for col in range(cols):
-                if matrix[row][col] == path[0]:
-                    if self.find_way(matrix, row, col, path[1:]):
+                if array[row][col] == path[0]:
+                    if self.find_way(array, row, col, path[1:]):
                         return True
         return False
 
-    def find_way(self, matrix, row, col, path):
+    def find_way(self, array, row, col, path):
         if not path:
-                return True
-        rows, cols = len(matrix), len(matrix[0])
-        matrix[row][col] = 0
-        if col + 1 < cols and matrix[row][col + 1] == path[0]:
-            return self.find_way(matrix, row, col + 1, path[1:])
-        elif col - 1 >= 0 and matrix[row][col - 1] == path[0]:
-            return self.find_way(matrix, row, col - 1, path[1:])
-        elif row + 1 < rows and matrix[row + 1][col] == path[0]:
-            return self.find_way(matrix, row + 1, col, path[1:])
-        elif row - 1 >= 0 and matrix[row - 1][col] == path[0]:
-            return self.find_way(matrix, row - 1, col, path[1:])
+            return True
+        rows, cols = array.shape
+        # 上下左右查找
+        array[row][col] = 0
+        if col + 1 < cols and array[row][col + 1] == path[0]:
+            return self.find_way(array, row, col + 1, path[1:])
+        elif col - 1 >= 0 and array[row][col - 1] == path[0]:
+            return self.find_way(array, row, col - 1, path[1:])
+        elif row + 1 < rows and array[row + 1][col] == path[0]:
+            return self.find_way(array, row + 1, col, path[1:])
+        elif row - 1 >= 0 and array[row - 1][col] == path[0]:
+            return self.find_way(array, row - 1, col, path[1:])
         else:
             return False
 

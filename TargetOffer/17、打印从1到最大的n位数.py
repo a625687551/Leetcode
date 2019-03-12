@@ -7,6 +7,7 @@
 
 class Solution:
     def print_n(self, n):
+        """这个主要考虑数据溢出处理问题"""
         if n <= 0:
             return
         list_num = ["0"] * n
