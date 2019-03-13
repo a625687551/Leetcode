@@ -10,20 +10,19 @@ import numpy as np
 class Solution:
     def max_worth_gift(self, numbers):
         if not numbers:
-            return 0
-        rows = len(numbers)
-        cols = len(numbers[0])
-        max_value = np.ones((rows, cols))
+            return None
+        array = np.array(numbers)
+        rows, cols = array.shape
+        values = np.zeros((rows, cols), int)
         for row in range(rows):
             for col in range(cols):
-                left, up = 0, 0
+                left, top = 0, 0
                 if row > 0:
-                    up = max_value[row - 1][col]
+                    top = values[row - 1][col]
                 if col > 0:
-                    left = max_value[row][col - 1]
-                max_value[row][col] = max(up, left) + numbers[row][col]
-        print(max_value)
-        return max_value[rows - 1][cols - 1]
+                    left = values[row][col - 1]
+                values[row][col] = max(top, left) + array[row][col]
+        return values[-1][-1]
 
 
 if __name__ == '__main__':
