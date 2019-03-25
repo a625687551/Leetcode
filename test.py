@@ -86,10 +86,10 @@ if __name__ == '__main__':
     s = Solution()
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
+
     print(s.solution(matrix, way))
     # print(s.solution(10001))
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,
          48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,
          48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
-    # print(sorted(random.choices(a, k=10)))

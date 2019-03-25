@@ -6,25 +6,23 @@
 
 
 class Solution:
-    def max_no_repetition(self, target):
-        if not target:
-            return 0
+    def max_no_repetition(self, data):
+        if not data:
+            return None
         position = {}
-        cur_length = 0
-        max_length = 0
-        length = len(target)
-        for i in range(length):
-            pre_index = position.get(target[i], -1)
+        cur_length, max_length = 0, 0
+        for i, v in enumerate(data):
+            pre_index = position.get(v, -1)
             if pre_index < 0 or i - pre_index > cur_length:
                 cur_length += 1
             else:
                 if cur_length > max_length:
                     max_length = cur_length
                 cur_length = i - pre_index
-            position[target[i]] = i
+            position[v] = i
             if cur_length > max_length:
                 max_length = cur_length
-        return max_length, position
+        return max_length
 
 
 if __name__ == '__main__':
