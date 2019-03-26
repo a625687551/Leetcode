@@ -23,7 +23,7 @@ class Solution:
                 heapq.heappushpop(max_heap, -x)
             else:
                 continue
-        return [-heapq.heappop(max_heap) for _ in range(len(max_heap))]
+        return [-heapq.heappop(max_heap) for _ in range(k)]
 
 
 if __name__ == '__main__':

@@ -18,6 +18,8 @@ class Solution:
             self.min_stack.append(self.min_stack[-1])
 
     def pop(self):
+        if not self.stack:
+            return None
         self.stack.pop()
         self.min_stack.pop()
 

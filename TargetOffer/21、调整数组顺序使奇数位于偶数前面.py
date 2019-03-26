@@ -18,8 +18,8 @@ class Solution:
                 odd.append(i)
             else:
                 even.append(i)
-        array = odd.extend(even)
-        return array
+        odd.extend(even)
+        return odd
 
     def odd_before_even_resort(self, array):
         if not array:

@@ -34,6 +34,9 @@ class Solution:
             p.next = p1
         elif p2:
             p.next = p2
+        # 不知道这个方法如何
+        # if p1 or p2:
+        #     p.next = p1 or p2
         return r.next
 
 

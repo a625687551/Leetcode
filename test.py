@@ -37,23 +37,20 @@ class Solution:
         self.vis = {}
 
     def solution(self, nums, k):
-        if not nums or not nums.next:
-            return nums
-        new = ListNode(-1)
-        new.next = nums
-        pre = new
-        p = nums
-        while p and p.next:
-            nex = p.next
-            if p.val == nex.val:
-                while nex and nex.val == p.val:
-                    nex = nex.next
-                pre.next = nex
-                p = nex
-            else:
-                pre = p
-                p = p.next
-        return new.next
+        if not nums:
+            return 0
+        array = np.array(nums)
+        rows, cols = array.shape
+        value_matrix = np.zeros((rows, cols), int)
+        for row in range(rows):
+            for col in range(cols):
+                left, top = 0, 0
+                if row > 0:
+                    top = value_matrix[row - 1][col]
+                if col > 0:
+                    left = value_matrix[row][col - 1]
+                value_matrix[row][col] = max(top, left) + array[row][col]
+        return value_matrix[-1][-1]
 
 
 if __name__ == '__main__':
@@ -78,7 +75,7 @@ if __name__ == '__main__':
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
 
-    print(s.solution(matrix, way))
+    print(s.solution(array, way))
     # print(s.solution(10001))
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,
          48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
