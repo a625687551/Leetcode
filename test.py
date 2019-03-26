@@ -37,32 +37,23 @@ class Solution:
         self.vis = {}
 
     def solution(self, nums, k):
-        if not nums or not k:
-            return True
-        array = np.array(nums)
-        rows, cols = array.shape
-        for row in range(rows):
-            for col in range(cols):
-                if array[row][col] == k[0]:
-                    if self.find_path(array, row, col, k[1:]):
-                        return True
-        return False
-
-    def find_path(self, array, row, col, path):
-        if not path:
-            return True
-        rows, cols = array.shape
-        array[row][col] = 0
-        if row + 1 < rows and array[row+1][col] == path[0]:
-            return self.find_path(array, row+1, col, path[1:])
-        elif row - 1 >= 0 and array[row-1][col] == path[0]:
-            return self.find_path(array, row-1, col, path[1:])
-        elif col + 1 < cols and array[row][col+1] == path[0]:
-            return self.find_path(array, row, col+1, path[1:])
-        elif col - 1 >= 0 and array[row][col-1] == path[0]:
-            return self.find_path(array, row, col-1, path[1:])
-        else:
-            return False
+        if not nums or not nums.next:
+            return nums
+        new = ListNode(-1)
+        new.next = nums
+        pre = new
+        p = nums
+        while p and p.next:
+            nex = p.next
+            if p.val == nex.val:
+                while nex and nex.val == p.val:
+                    nex = nex.next
+                pre.next = nex
+                p = nex
+            else:
+                pre = p
+                p = p.next
+        return new.next
 
 
 if __name__ == '__main__':
