@@ -86,5 +86,5 @@ class Solution1:
 if __name__ == '__main__':
     s = Solution()
     t = Solution1()
-    print(s.print_n(3))
+    # print(s.print_n(3))
     # print(t.Print1ToMaxOfNDigits(3))

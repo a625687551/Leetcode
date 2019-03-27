@@ -30,6 +30,20 @@ class Solution:
                     numbers[i], numbers[index] = numbers[index], numbers[i]
         return False
 
+    def duplicate_new(self, nums):
+        if not nums:
+            return []
+        res = []
+        for k, v in enumerate(nums):
+            while k != v:
+                if nums[k] == nums[v]:
+                    res.append(v)
+                    break
+                else:
+                    nums[k], nums[v] = nums[v], nums[k]
+                    v = nums[k]
+        return res
+
 
 if __name__ == '__main__':
     s = Solution()

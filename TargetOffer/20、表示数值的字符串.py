@@ -13,12 +13,14 @@ class Solution:
         sign, decimal, has_e = False, False, False
         for i, x in enumerate(s):
             if x == "e" or x == "E":
-                # e后面一定要接数字
-                if i == len(s) - 1:
+                if i == 0 or i == len(s) - 1 or has_e:
                     return False
-                # 不能同时存在两个e
-                if has_e:
-                    return False
+                # # e后面一定要接数字
+                # if i == len(s) - 1:
+                #     return False
+                # # 不能同时存在两个e
+                # if has_e:
+                #     return False
                 has_e = True
             elif x == "+" or x == "-":
                 # 第二次出现+-符号，则必须紧接在e之后
@@ -47,3 +49,4 @@ if __name__ == '__main__':
     print(s.isNumeric("123.45*"))
     print(s.isNumeric("123.45"))
     print(s.isNumeric("12345+"))
+    print(s.isNumeric("e12345"))

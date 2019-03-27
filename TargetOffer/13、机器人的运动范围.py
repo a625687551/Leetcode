@@ -17,6 +17,7 @@ class Solution:
         self.vis = {}
 
     def movingCount(self, threshold, rows, cols):
+        """这个考虑用矩阵来解决"""
         if threshold < 0 or rows < 0 or cols < 0:
             return 0
         return self.moving(threshold, rows, cols, 0, 0)

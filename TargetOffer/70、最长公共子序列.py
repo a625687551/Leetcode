@@ -26,8 +26,8 @@ class Solution:
                         end = i
                 else:
                     matrix[i][j] = max(matrix[i - 1][j], matrix[i][j - 1])
-        # print(matrix)
-        # print(max_num, end)
+        print(matrix)
+        print(max_len, end)
         return s1[end-max_len:end], matrix[len1][len2]
 
 

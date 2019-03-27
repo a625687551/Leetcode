@@ -36,16 +36,27 @@ class Solution:
         self.stack = []
         self.vis = {}
 
-    def solution(self, nums, k):
-        if not nums:
-            return None
-        if k > nums:
-            return None
-        if k == len(nums):
-            return nums
-        first = nums[:k][::-1]
-        second = nums[k:][::-1]
-        return (first + second)[::-1]
+    def solution(self, s, pattern):
+        if not s:
+            return False
+        has_e, decimal, sign = False, False, False
+        for i, x in enumerate(s):
+            if x in ["+", "-"]:
+                if not sign and s[i - 1] not in ["+", "-"] and i > 0:
+                    return False
+                if sign and s[i - 1] not in ["+", "-"]:
+                    return False
+                sign = True
+            elif x in ["e", "E"]:
+                if i == 0 or i == len(s) - 1 or has_e:
+                    return False
+                has_e = True
+            elif x == ".":
+                if has_e or decimal:
+                    return False
+                decimal = True
+            elif x < "0" or x > "9":
+                return False
 
 
 if __name__ == '__main__':
@@ -53,6 +64,7 @@ if __name__ == '__main__':
     l2 = [1, 1, 1, 1, 1, 1, 1]
     l3 = [3, 4, 5, 1, 2]
     ss = "wo ai ni"
+    s1, s2 = "abcdef", "cdefab"
 
     array = [[1, 2, 8, 9],
              [2, 4, 9, 12],
@@ -70,7 +82,7 @@ if __name__ == '__main__':
     # print(s.solution_over([1, 2, 3, 4, 5], [4, 5, 3, 2, 1]))
     # print(s.solution(30))
 
-    print(s.solution([9, 11, 8, 5, 7, 12, 16, 14], 7))
+    print(s.solution([2, 3, 1, 0, 2, 5, 3], 7))
     # print(s.solution(10001))
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,
          48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
