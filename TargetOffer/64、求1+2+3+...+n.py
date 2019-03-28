@@ -14,6 +14,7 @@ class Solution:
         result = (n > 0) and (n + self.Sum_Solution(n - 1))
         return result
 
+
 if __name__ == '__main__':
     s = Solution()
     print(s.Sum_Solution(10))

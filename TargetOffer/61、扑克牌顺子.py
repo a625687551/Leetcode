@@ -57,4 +57,5 @@ class Solution:
 if __name__ == '__main__':
     s = Solution()
     print(s.IsContinuous([0, 3, 1, 6, 4]))
+    print(s.IsContinuous([0, 8, 9, 6, 7]))
     # print(s.is_continue([0, 3, 1, 6, 4]))

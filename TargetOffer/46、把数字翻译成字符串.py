@@ -66,7 +66,8 @@ class Solution:
         length = len(str_num)
         res = [0]*(length-1) + [1, 1]
         for i in range(length - 2, -1, -1):
-            if "{}{}".format(str_num[i], str_num[i+1]) < "26":
+            # if "{}{}".format(str_num[i], str_num[i+1]) < "26":
+            if str_num[i:i + 2] < "26":
                 g = 1
             else:
                 g = 0

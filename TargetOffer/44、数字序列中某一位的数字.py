@@ -42,7 +42,7 @@ class Solution:
         first, start_len = 0, 1
         data = n - 1
         for i in range(len(str(data))):
-            temp = data - start_len*9 * 10 ** i
+            temp = data - start_len * 9 * 10 ** i
             if temp > 0:
                 data = temp
                 start_len += 1
@@ -51,6 +51,18 @@ class Solution:
                 break
         k, s = data // start_len, data % start_len
         return str(first + k)[s]
+
+    def solution_new(self, n):
+        if not n or n <= 0:
+            return 0
+        if n <= 10:
+            return n - 1
+        digit, m = 0, n - 1
+        while m > 0:
+            m = m - 9 * 10 ** digit
+            digit += 1
+        index = m + 9 * 10 ** (digit - 1)
+        return str(10 ** (digit - 1) + index // digit)[index % digit]
 
 
 if __name__ == '__main__':
@@ -65,3 +77,8 @@ if __name__ == '__main__':
     print(s.other_solution(30))
     print(s.other_solution(500))
     print(s.other_solution(1001))
+    # new
+    print(s.solution_new(10))
+    print(s.solution_new(30))
+    print(s.solution_new(500))
+    print(s.solution_new(1001))

@@ -26,7 +26,8 @@ class Solution:
         while n // i:
             current = (n // i) % 10
             pre = n // (i * 10)
-            after = n - (n // i) * i
+            # after = n - (n // i) * i
+            after = n % i
             if current == 0:
                 count += pre * i
             elif current == 1:
