@@ -24,7 +24,22 @@ class Solution:
                 max_length = cur_length
         return max_length
 
+    def solution_2(self, data):
+        if not data:
+            return ""
+        pos = {}
+        left, res = -1, 0
+        for k, v in enumerate(data):
+            if pos.get(v, -1) > left:
+                left = pos.get(v, -1)
+            pos[v] = k
+            res = max(res, k - left)
+        return res
+
 
 if __name__ == '__main__':
     s = Solution()
     print(s.max_no_repetition("arabcacfr"))
+    print(s.max_no_repetition("arabcaasdasfgjhcfr"))
+    print(s.solution_2("arabcacfr"))
+    print(s.solution_2("arabcaasdasfgjhcfr"))

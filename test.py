@@ -38,39 +38,15 @@ class Solution:
 
     def solution(self, data):
         if not data:
-            return 0
-        return self.count_inverse(data, data, 0, len(data) - 1)
-
-    def count_inverse(self, ori, temp, start, end):
-        if end - start < 1:
-            return 0
-        if end - start == 1:
-            if ori[start] >= ori[end]:
-                return 0
-            else:
-                temp[start], temp[end] = ori[end], ori[start]
-                return 1
-        mid = (start + end) // 2
-        cnt = self.count_inverse(ori, temp, start, mid) + self.count_inverse(ori, temp, mid + 1, end)
-        i, j = start, mid + 1
-        ind = start
-        while i <= mid and j <= end:
-            if ori[i] <= ori[j]:
-                temp[ind] = ori[i]
-                i += 1
-            else:
-                temp[ind] = ori[j]
-                cnt += mid - i + 1
-                j += 1
-            ind += 1
-        while i <= mid:
-            temp[ind] = ori[i]
-            i += 1
-            ind += 1
-        while j <= end:
-            temp[ind] = ori[j]
-            j += 1
-        return cnt
+            return ""
+        pos = {}
+        left, res = -1, 0
+        for k, v in enumerate(data):
+            if pos.get(v, -1) > left:
+                left = pos.get(v, -1)
+            pos[v] = k
+            res = max(res, k - left)
+        return res
 
 
 if __name__ == '__main__':
@@ -100,8 +76,8 @@ if __name__ == '__main__':
          268, 142, 463, 221, 882, 576, 604, 739, 288, 569, 256, 936, 275, 401, 497, 82, 935, 983, 583, 523, 697, 478,
          147, 795, 380, 973, 958, 115, 773, 870, 259, 655, 446, 863, 735, 784, 3, 671, 433, 630, 425, 930, 64, 266, 235,
          187, 284, 665, 874, 80, 45, 848, 38, 811, 267, 575]
-    print(s.solution([7, 5, 6, 4]))
-    print(s.solution(l))
+    print(s.solution("arabcaasdasfgjhcfr"))
+    # print(s.solution(l))
     # print(s.solution(10001))
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,
          48, 49, 51, 53, 57, 58, 59, 60, 61, 62, 63, 70]
