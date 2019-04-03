@@ -37,15 +37,26 @@ class Solution:
         self.vis = {}
 
     def solution(self, data):
-        if not data:
-            return ""
-        pos = {}
-        left, res = -1, 0
-        for k, v in enumerate(data):
-            if pos.get(v, -1) > left:
-                left = pos.get(v, -1)
-            pos[v] = k
-            res = max(res, k - left)
+        if len(data) < 1:
+            return data
+        len_data = len(data)
+        mid = len_data // 2
+        left = self.solution(data[:mid])
+        right = self.solution(data[mid:])
+        return self.merge(left, right)
+
+    def merge(self, left, right):
+        i, j = 0, 0
+        res = []
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                res.append(left[i])
+                i += 1
+            else:
+                res.append(right[j])
+                j += 1
+        res += left[i:]
+        res += right[j:]
         return res
 
 
@@ -76,7 +87,7 @@ if __name__ == '__main__':
          268, 142, 463, 221, 882, 576, 604, 739, 288, 569, 256, 936, 275, 401, 497, 82, 935, 983, 583, 523, 697, 478,
          147, 795, 380, 973, 958, 115, 773, 870, 259, 655, 446, 863, 735, 784, 3, 671, 433, 630, 425, 930, 64, 266, 235,
          187, 284, 665, 874, 80, 45, 848, 38, 811, 267, 575]
-    print(s.solution("arabcaasdasfgjhcfr"))
+    print(s.solution([1, 2, 3, 2, 2, 2, 5, 4, 2]))
     # print(s.solution(l))
     # print(s.solution(10001))
     a = [12, 13, 14, 17, 19, 38, 42, 43, 44, 45, 46, 47,

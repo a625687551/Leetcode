@@ -22,6 +22,7 @@ class Solution:
         return odd
 
     def odd_before_even_resort(self, array):
+        """双指针，ab从头尾巴往中间走，a++一直遇到偶数停止，b--一直遇到奇数，然后交换再继续"""
         if not array:
             return []
         start = 0
