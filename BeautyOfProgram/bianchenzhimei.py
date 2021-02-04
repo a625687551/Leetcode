@@ -9,6 +9,7 @@ def ConnectTreeNodes(pNodeA1, pNodeA2, pNodeA3):
     pNodeA1.left = pNodeA2
     pNodeA1.right = pNodeA3
 
+
 ########################################################################
 ##                    编程之美1.1让cpu曲线听你指挥                       ##
 ########################################################################
@@ -43,7 +44,8 @@ def algorithm3():
     busy = [0] * count
     idle = [0] * count
     for i in range(count):
-        busy[i] = (1 + math.sin(math.pi * i * 2 / count)) / count  # 0~2之间－》0~0.01之间
+        busy[i] = (1 + math.sin(
+            math.pi * i * 2 / count)) / count  # 0~2之间－》0~0.01之间
         idle[i] = 0.01 - busy[i]
     j = 0
     while True:
@@ -90,13 +92,13 @@ def test1_2():
 class CPrefixSorting:
     def __init__(self, pCakeArray, nCakeCnt):
         self.m_nCakeCnt = nCakeCnt  # 烙饼个数
-        self.m_nMaxSwap = self.UpBound(nCakeCnt);  # 最多交换次数。根据前面的推断，这里最多为m_nCakeCnt * 2
+        self.m_nMaxSwap = self.UpBound(
+            nCakeCnt);  # 最多交换次数。根据前面的推断，这里最多为m_nCakeCnt * 2
         self.m_CakeArray = list(pCakeArray)  # 烙饼信息数组
         self.m_SwapArray = [0] * self.m_nMaxSwap  # 交换结果数组
         self.m_ReverseCakeArray = list(pCakeArray)  # 当前翻转烙饼信息数组
         self.m_ReverseCakeArraySwap = [0] * self.m_nMaxSwap  # 当前翻转烙饼交换结果数组
         self.m_nSearch = 0  # 当前搜索次数信息
-
 
         # 计算烙饼翻转信息
         # @param
@@ -131,7 +133,6 @@ class CPrefixSorting:
             else:
                 ret += 1
         return ret
-
 
         # 排序的主函数
 
@@ -177,7 +178,8 @@ class CPrefixSorting:
     def Revert(self, nBegin, nEnd):
         if nBegin >= nEnd:
             return
-        self.m_ReverseCakeArray[nBegin:nEnd + 1] = reversed(self.m_ReverseCakeArray[nBegin:nEnd + 1])
+        self.m_ReverseCakeArray[nBegin:nEnd + 1] = reversed(
+            self.m_ReverseCakeArray[nBegin:nEnd + 1])
         # print(self.m_ReverseCakeArray)
 
 
@@ -216,8 +218,10 @@ def buyBook(inputList):
     return min([buyBook([1, 0, 0, 0, 0]) + buyBook([a - 1, b, c, d, e]),
                 buyBook([1, 1, 0, 0, 0]) + buyBook([a - 1, b - 1, c, d, e]),
                 buyBook([1, 1, 1, 0, 0]) + buyBook([a - 1, b - 1, c - 1, d, e]),
-                buyBook([1, 1, 1, 1, 0]) + buyBook([a - 1, b - 1, c - 1, d - 1, e]),
-                buyBook([1, 1, 1, 1, 1]) + buyBook([a - 1, b - 1, c - 1, d - 1, e - 1])])
+                buyBook([1, 1, 1, 1, 0]) + buyBook(
+                    [a - 1, b - 1, c - 1, d - 1, e]),
+                buyBook([1, 1, 1, 1, 1]) + buyBook(
+                    [a - 1, b - 1, c - 1, d - 1, e - 1])])
 
 
 def test1_4():
@@ -272,14 +276,17 @@ def findbrokenWithEquation(origin, now):
     nowMul = reduce(lambda x, y: x * y, now)
     a = originSum - nowSum
     b = originMul / nowMul
-    return (a + math.sqrt(a ** 2 - 4 * b)) / 2, abs(a - math.sqrt(a ** 2 - 4 * b)) / 2
+    return (a + math.sqrt(a ** 2 - 4 * b)) / 2, abs(
+        a - math.sqrt(a ** 2 - 4 * b)) / 2
 
 
 def test1_5():
     print(findOneBroken([1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6]))
     print(findTwoBrokenDiff([1, 1, 2, 2, 3, 4, 5, 5, 6, 6]))
-    print(findbrokenWithEquation([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6], [1, 1, 2, 2, 3, 4, 5, 5, 6, 6]))
-    print(findbrokenWithEquation([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6], [1, 1, 2, 2, 4, 4, 5, 5, 6, 6]))
+    print(findbrokenWithEquation([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+                                 [1, 1, 2, 2, 3, 4, 5, 5, 6, 6]))
+    print(findbrokenWithEquation([1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6],
+                                 [1, 1, 2, 2, 4, 4, 5, 5, 6, 6]))
     print(findnumber(6))
 
 
@@ -541,7 +548,6 @@ def test1_9():
 ########################################################################
 # 算法的核心是广度优先搜索，对于A一步可以到达的领域集合中如果有有A',那么A，A'距离为0转折
 #  对于A一步可以到达的空格子的领域集合中如果有A'，那么距离为1转折｀｀｀｀｀`````
-
 
 
 ########################################################################
@@ -1135,7 +1141,8 @@ def findTwoN(list, n):
             for k in range(1, sumList // 2 + 1):
                 # print(i,j,k)
                 F[i][j][k] = F[i - 1][j][k]
-                if (k >= list[i - 1] and F[i][j][k] < F[i - 1][j - 1][k - list[i - 1]] + list[i - 1]):
+                if (k >= list[i - 1] and F[i][j][k] < F[i - 1][j - 1][
+                    k - list[i - 1]] + list[i - 1]):
                     F[i][j][k] = F[i - 1][j - 1][k - list[i - 1]] + list[i - 1]
                     Path[i][j][k] = 1
 
@@ -1155,7 +1162,8 @@ def findTwoN2(list, n):
             for k in range(1, sumList // 2 + 1):
                 # print(i,j,k)
 
-                if (k >= list[i - 1] and F[j][k] < F[j - 1][k - list[i - 1]] + list[i - 1]):
+                if (k >= list[i - 1] and F[j][k] < F[j - 1][k - list[i - 1]] +
+                        list[i - 1]):
                     F[j][k] = F[j - 1][k - list[i - 1]] + list[i - 1]
 
     return F[n][sumList // 2]
@@ -1365,8 +1373,6 @@ def test3_3():
 # 删除了，做法是先把C和B的数据互换，然后删除C，接上next链,B->next=C->next即可
 
 
-
-
 ########################################################################
 ##                      编程之美3.5 最短摘要的生成                      ##
 ########################################################################
@@ -1390,7 +1396,9 @@ def findMinLengthSub(sourceList, targetlist):
     while True:
 
         # 假设包含所有的关键词，并且后面的指针没有越界，往后移动指针
-        while pEnd < len(sourceList) and not isAllExisted(sourceList, targetlist, pBegin, pEnd):
+        while pEnd < len(sourceList) and not isAllExisted(sourceList,
+                                                          targetlist, pBegin,
+                                                          pEnd):
             pEnd += 1
 
             # 假设找到一段包含所有关键词信息的字符串
@@ -1408,7 +1416,9 @@ def findMinLengthSub(sourceList, targetlist):
 
 def test3_5():
     f = Memoize(findMinDistance)
-    print(findMinLengthSub(["ab", "ef", "cd", "gh", "ij", "k", "c", "ef", "t", "ij", "yz"], ['ef', 'ij']))
+    print(findMinLengthSub(
+        ["ab", "ef", "cd", "gh", "ij", "k", "c", "ef", "t", "ij", "yz"],
+        ['ef', 'ij']))
 
 
 ########################################################################
@@ -1423,12 +1433,10 @@ def test3_5():
 #             时候第一条先走a-b步，然后同时走，一边比较每一个节点
 
 
-
 ########################################################################
 ##                   编程之美3.8 队列中取最大值问题                      ##
 ########################################################################
 # O(1)内完成，enqueue,dequeue,findmax操作，做法是使用双数组，同步更新
-
 
 
 ########################################################################
