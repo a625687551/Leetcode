@@ -46,11 +46,17 @@ class Solution:
 
     def numTrees_dynamic(self, n: int) -> int:
         """动态规划"""
-        pass
+        result = [0]*(n+1)
+        result[0], result[1] = 1, 1
+        for i in range(2, n + 1):
+            for j in range(1, i + 1):
+                result[i] += result[j - 1] * result[i - j]
+        return result[n]
 
 
 if __name__ == '__main__':
-    n = 15
+    n = 3
     s = Solution()
     # print(s.numTrees_back(n))
-    print(s.numTrees_math(n))
+    # print(s.numTrees_math(n))
+    print(s.numTrees_dynamic(n))
