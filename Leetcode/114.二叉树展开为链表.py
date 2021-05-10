@@ -16,5 +16,24 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
+        if not root:
+            return []
+        result = []
+        def prereverse(node:TreeNode):
+            if not node:
+                return None
+            result.append(node)
+            prereverse(node.left)
+            prereverse(node.right)
+            
+        prereverse(root)
+        size = len(result)
+        for i in range(1, size):
+            pre, cur = result[i-1], result[i]
+            pre.left = None
+            pre.right = cur
+        # return result
+
+
 # @lc code=end
 

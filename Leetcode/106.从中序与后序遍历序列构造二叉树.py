@@ -15,20 +15,29 @@ class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         if not inorder or not postorder or len(inorder) != len(postorder):
             return None
-        in_index = {ele:i for i, ele in enumerate(inorder)}
+        in_map = {ele:i for i, ele in enumerate(inorder)}
         n = len(inorder)
-        
-        return self.deserialize(inorder, postorder, in_index, 0, n-1, 0, n-1)
+        def deserialize(in_left, in_right):
+            if in_left > in_right:
+                return None
+            root_val = postorder.pop()
+            root = TreeNode(root_val)
+            root_index = in_map[root_val]
+            root.left = deserialize(root_index+1, in_right)
+            root.right = deserialize(in_left,root_index-1)
+            return root
+            
+        return deserialize(0, n-1)
 
-    def deserialize(self, inorder, postorder, in_index, in_left, in_right, post_left, post_right):
-        """反序列化"""
-        if in_left > in_right or post_left > post_right:
-            return None
-        root_index = in_index[postorder[-1]]
-        root = TreeNode(postorder[-1])
-        left_subtree_size = root_index - in_left
-        root.left = self.deserialize(inorder, postorder, in_index, in_left, root_index-1, post_left, post_left + left_subtree_size)
-        root.right = self.deserialize(inorder, postorder, in_index, root_index +1, in_right, post_left+ size_left_subtree+1, post_right-1)
-        return root
+    # def deserialize(self, inorder, postorder, in_index, in_left, in_right, post_left, post_right):
+    #     """反序列化"""
+    #     if in_left > in_right or post_left > post_right:
+    #         return None
+    #     root_index = in_index[postorder[-1]]
+    #     root = TreeNode(postorder[-1])
+    #     left_subtree_size = root_index - in_left
+    #     root.left = self.deserialize(inorder, postorder, in_index, in_left, root_index-1, post_left, post_left + left_subtree_size)
+    #     root.right = self.deserialize(inorder, postorder, in_index, root_index +1, in_right, post_left+ size_left_subtree+1, post_right-1)
+    #     return root
 # @lc code=end
 
