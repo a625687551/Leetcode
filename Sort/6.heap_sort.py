@@ -17,35 +17,67 @@ Python 可以用heapq
 // 平均时间复杂度 ---- O(nlogn)
 // 所需辅助空间 ------ O(1)
 // 稳定性 ------------ 不稳定
+
+大顶堆：arr[i] >= arr[2i+1] && arr[i] >= arr[2i+2]  
+小顶堆：arr[i] <= arr[2i+1] && arr[i] <= arr[2i+2]  
 """
 
 
-def heap_sort(lists, i, size):
-    # 堆排序
-    lchild = 2 * i + 1
-    rchild = 2 * i + 2
-    mt = i
-    if i > size / 2:
-        if lchild < size and lists[lchild] > lists[mt]:
-            mt = lchild
-        if rchild < size and lists[rchild] > lists[mt]:
-            mt = rchild
-        if mt != i:
-            lists[mt], lists[i] = lists[i], lists[mt]
-            heap_sort(lists, mt, size)
+class MinHeap(object):
+    def __init__(self, nums):
+        self.heap = []
+        self.size = 0
+        self.build_heap(nums)
+
+    def swap(self, i, j):
+        self.heap[i], self.heap[j] = self.heap[j], self.heap[i]
+
+    def build_heap(self, nums):
+        for x in nums:
+            self.push(x)
+
+    def push(self, x):
+        self.heap.append(x)
+        self.size += 1
+        index = self.size -1
+        while index:
+            parent_index = index // 2
+            if self.heap[parent_index] > self.heap[index]:
+                self.swap(parent_index, index)
+            index = parent_index
+
+    def pop(self):
+        top = self.heap[0]
+        self.heap[0] = self.heap[-1]
+        self.heap.pop()
+        self.size -= 1
+
+        index = 0
+        while index < self.size:
+            left = index*2 + 1
+            right = index*2 + 2
+            small_index = index
+
+            if left < self.size and self.heap[left] < self.heap[small_index]:
+                small_index = left
+            if right < self.size and self.heap[right] < self.heap[small_index]:
+                small_index = right
+            
+            if small_index == index:
+                break
+            self.swap(small_index, index)
+        return top
 
 
-def build_heap(lists, size):
-    for i in range(0, (size / 2))[::-1]:
-        heap_sort(lists, i, size)
+    def top(self):
+        return self.heap[0]
 
-
-def heap_sort(lists):
-    size = len(lists)
-    build_heap(lists, size)
-    for i in range(0, size)[::-1]:
-        lists[0], lists[i] = lists[i], lists[0]
-        heap_sort(lists, 0, i)
+def heap_sort(nums):
+    h = MinHeap(nums)
+    res = []
+    while h.size > 0:
+        res.append(h.pop())
+    return res
 
 
 if __name__ == '__main__':

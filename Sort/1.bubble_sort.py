@@ -14,14 +14,13 @@
 '''
 
 
-def bubble_sort(lists):
-    count = len(lists)
-    for i in range(count):
-        for j in range(i + 1, count):
-            if lists[i] > lists[j]:
-                lists[i], lists[j] = lists[j], lists[i]
-        print(lists)
-    return lists
+def bubble_sort(nums):
+    size = len(nums)
+    for i in range(size):
+        for j in range(i + 1, size):
+            if nums[i] > nums[j]:
+                nums[i], nums[j] = nums[j], nums[i]
+    return nums
 
 
 if __name__ == '__main__':
