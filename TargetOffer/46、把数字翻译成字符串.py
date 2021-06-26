@@ -74,9 +74,20 @@ class Solution:
             res[i] = res[i+1] + res[i+2]*g
         return res[0]
 
+    def get_tran_count_3(self, num):
+        """自前向后，类似爬楼梯"""
+        size = len(num)
+        if size <= 1:
+            return 1
+        dp = [0] * size
+        dp[0] = 1
+        dp[1] = 2 if 10 <= int(num[:2]) < 26 else 1
+        for i in range(2, size):
+            dp[i] = dp[i-1] + dp[i-2] if 10 <= int(num[i-1:i+1]) < 26 else dp[i-1]
+        return dp[-1]
+
 
 if __name__ == '__main__':
     s = Solution()
-    print(s.trans_num_str(12258))
-    print(s.trans_num_str(12858))
-    print(s.trans_num_str(12818))
+    s.trans_num_str(12258)
+    print(s.get_tran_count_3("12818"))
