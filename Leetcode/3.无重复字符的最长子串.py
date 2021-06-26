@@ -7,16 +7,18 @@
 # @lc code=start
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        occ = set()
-        size = len(s)
-        l, res = -1, 0
-        for i in range(size):
-            if i!=0:
-                occ.remove(s[i-1])
-            while l+1 < size and s[l+1] not in occ:
-                occ.add(s[l+1])
-                l += 1
-            res = max(res, l-i+1)
+        window = dict()
+        left, right =0,0
+        res = 0
+        while(right < len(s)):
+            c = s[right]
+            right += 1
+            window[c] = window.get(c, 0) + 1
+            while(window[c] > 1):
+                d = s[left]
+                left += 1
+                window[d] -= 1
+            res = max(res, right - left)
         return res
             
 
