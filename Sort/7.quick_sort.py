@@ -40,6 +40,7 @@ def quick_sort(lists, left, right):
 
 
 def quick_sort_brief(lists):
+    """递归方式"""
     if len(lists) <= 1:
         return lists
     low = []
@@ -53,18 +54,38 @@ def quick_sort_brief(lists):
     return quick_sort_brief(low) + [base] + quick_sort_brief(high)
 
 
-def quick_sort_brief1(lists):
-    if len(lists) <= 1:
+def quick_sort_no_recursion(lists):
+    if len(lists) < 2:
         return lists
-    base = lists[0]
-    left = [x for x in lists[1:] if x <= base]
-    right = [x for x in lists[1:] if x > base]
-    return quick_sort_brief1(left) + [base] + quick_sort_brief1(right)
+    stack = [len(lists) -1, 0]
+    while stack:
+        l = stack.pop()
+        r = stack.pop()
+        index = partition(lists, l, r)
+        if l < index -1:
+            stack.append(l)
+            stack.append(index -1)
+        if r < index + 1:
+            stack.append(r)
+            stack.append(index + 1)
+    return lists
+
+def partition(arr, start, end):
+    pivot = arr[start]
+    while start < end:
+        while start < end and arr[end] >= pivot:
+            end -=1
+        # arr[start] = arr[end]
+        while start < end and arr[start] <= pivot:
+            start += 1
+        arr[end] = arr[start]
+    arr[start] = pivot
+    return start
 
 
 if __name__ == '__main__':
     l = [29, 10, 14, 37, 14]
     f = quick_sort(l, left=0, right=len(l) - 1)
     print("finally {}".format(f))
-    print(quick_sort_brief(l))
-    print(quick_sort_brief1(l))
+    # print(quick_sort_brief(l))
+    print(quick_sort_no_recursion(l))
