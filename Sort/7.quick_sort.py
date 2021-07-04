@@ -55,6 +55,7 @@ def quick_sort_brief(lists):
 
 
 def quick_sort_no_recursion(lists):
+    """非递归快排"""
     if len(lists) < 2:
         return lists
     stack = [len(lists) -1, 0]
